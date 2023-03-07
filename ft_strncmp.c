@@ -6,13 +6,13 @@
 /*   By: iortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:46:20 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/07 14:10:30 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/07 15:25:10 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strncmp(char *s1, char *s2, unsigned int n)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	unsigned int	aux;
+	size_t	aux;
 
 	if (n == 0)
 		return (0);

@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft-atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 14:05:21 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/07 14:15:56 by iortega-         ###   ########.fr       */
+/*   Created: 2023/03/07 15:39:23 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/07 16:04:03 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	int	num;
-	int	neg;
+	size_t				aux;
+	const unsigned char	*a1;
+	const unsigned char	*a2;
 
-	neg = 1;
-	num = 0;
-	while (*str == ' ' && *str != '\0')
-		str++;
-	while (*str != '\0')
+	a1 = s1;
+	a2 = s2;
+	if (n == 0)
+		return (0);
+	aux = 0;
+	while (*a1 != '\0' && (*a1 == *a2) && (aux < n - 1))
 	{
-		if (*str == '-')
-		{
-			neg = -1;
-			str++;
-		}
-		if (*str < '0' || *str > '9')
-			return (num * neg);
-		else
-			num = 10 * num + *str - '0';
-		str++;
+		a1++;
+		a2++;
+		aux++;
 	}
-	num = num * neg;
-	return (num);
+	return (*a1 - *a2);
 }

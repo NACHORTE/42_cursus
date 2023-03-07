@@ -6,11 +6,11 @@
 /*   By: iortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/10 12:06:30 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/07 14:09:28 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/07 14:17:08 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_strlen(char *str)
+size_t	ft_strlen(const char *str)
 {
 	int	aux;
 

@@ -1,37 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft-atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 14:05:21 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/07 14:15:56 by iortega-         ###   ########.fr       */
+/*   Created: 2023/03/07 15:21:37 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/07 15:41:32 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	int	num;
-	int	neg;
+	const char	*i;
 
-	neg = 1;
-	num = 0;
-	while (*str == ' ' && *str != '\0')
-		str++;
-	while (*str != '\0')
+	i = s;
+	while (*i != c && *i != '\0' && n > 0)
 	{
-		if (*str == '-')
-		{
-			neg = -1;
-			str++;
-		}
-		if (*str < '0' || *str > '9')
-			return (num * neg);
-		else
-			num = 10 * num + *str - '0';
-		str++;
+		i++;
+		n--;
 	}
-	num = num * neg;
-	return (num);
+	if (n == 0)
+		return (0);
+	return ((void *) i);
 }

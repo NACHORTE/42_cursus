@@ -1,37 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft-atoi.c                                          :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 14:05:21 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/07 14:15:56 by iortega-         ###   ########.fr       */
+/*   Created: 2023/03/07 14:17:27 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/07 14:28:57 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+void	*ft_memset(void *s, int c, size_t n)
 {
-	int	num;
-	int	neg;
+	size_t	aux;
 
-	neg = 1;
-	num = 0;
-	while (*str == ' ' && *str != '\0')
-		str++;
-	while (*str != '\0')
-	{
-		if (*str == '-')
-		{
-			neg = -1;
-			str++;
-		}
-		if (*str < '0' || *str > '9')
-			return (num * neg);
-		else
-			num = 10 * num + *str - '0';
-		str++;
-	}
-	num = num * neg;
-	return (num);
+	aux = 0;
+	while (aux < n)
+		((unsigned char *)s)[aux++] = c;
+	return (s);
 }

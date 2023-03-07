@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft-atoi.c                                          :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 14:05:21 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/07 14:15:56 by iortega-         ###   ########.fr       */
+/*   Created: 2023/03/07 15:04:01 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/07 15:57:01 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_atoi(const char *str)
+char	*ft_strrchr(const char *s, int c)
 {
-	int	num;
-	int	neg;
+	char	*r;
 
-	neg = 1;
-	num = 0;
-	while (*str == ' ' && *str != '\0')
-		str++;
-	while (*str != '\0')
+	r = 0;
+	while (*s != '\0')
 	{
-		if (*str == '-')
-		{
-			neg = -1;
-			str++;
-		}
-		if (*str < '0' || *str > '9')
-			return (num * neg);
-		else
-			num = 10 * num + *str - '0';
-		str++;
+		if (*s == c)
+			r = (char *) s;
+		s++;
 	}
-	num = num * neg;
-	return (num);
+	if (c == '\0')
+		return ((char *) s);
+	else
+		return (r);
 }
