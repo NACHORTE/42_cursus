@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 14:29:52 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/08 14:29:52 by iortega-         ###   ########.fr       */
+/*   Created: 2023/03/08 18:13:54 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/08 18:13:54 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
+#include "libft.h"
 
-# define LIBFT_H
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*str;
+	int		total;
+	int		i;
 
-# include <stdio.h>
-# include <stdlib.h>
-
-size_t		ft_strlen(const char *s);
-unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
-
-#endif
+	total = ft_strlen(s1) + ft_strlen(s2);
+	str = malloc(sizeof(char) * total + 1);
+	if (str == 0 || total == 0)
+		return (0);
+	i = 0;
+	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
+	ft_strlcat(str, s2, total + 1);
+	return (str);
+}
