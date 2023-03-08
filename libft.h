@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 14:17:27 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/07 14:28:57 by iortega-         ###   ########.fr       */
+/*   Created: 2023/03/08 14:29:52 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/08 14:29:52 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#ifndef LIBFT_H
 
-void	*ft_memset(void *s, int c, size_t n)
-{
-	size_t	aux;
+# define LIBFT_H
 
-	aux = 0;
-	while (aux < n)
-		((unsigned char *)s)[aux++] = c;
-	return (s);
-}
+# include <stdio.h>
+# include <stdlib.h>
+
+#endif
