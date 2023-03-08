@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/08 14:29:52 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/08 14:29:52 by iortega-         ###   ########.fr       */
+/*   Created: 2023/03/08 16:05:27 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/08 16:05:27 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
+#include "libft.h"
 
-# define LIBFT_H
+void	*memcpy(void *dest, const void *src, size_t n)
+{
+	unsigned char	*d;
+	unsigned char	*s;
+	size_t			i;
 
-# include <stdio.h>
-# include <stdlib.h>
-
-size_t		ft_strlen(const char *s);
-
-#endif
+	d = (unsigned char *)dest;
+	s = (unsigned char *)src;
+	i = 0;
+	while (d && i < n)
+	{
+		if (d != 0 || s != 0)
+			d[i] = s[i];
+		i++;
+	}
+	return ((void *)d);
+}
