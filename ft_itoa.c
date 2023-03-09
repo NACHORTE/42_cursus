@@ -27,7 +27,7 @@ static int	ft_numbers(int n)
 	return (total + 1);
 }
 
-char	*ft_uniquecase(char *str)
+static char	*ft_uniquecase(char *str)
 {
 	str = (char *)malloc(12);
 	if (str == NULL)
@@ -36,7 +36,7 @@ char	*ft_uniquecase(char *str)
 	return (str);
 }
 
-char	*ft_fill(char *num, int n, int i, int numbers)
+static char	*ft_fill(char *num, int n, int i, int numbers)
 {
 	num[numbers] = '\0';
 	while (numbers != i)

@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <stdlib.h>
+# include <unistd.h>
 
 size_t			ft_strlen(const char *s);
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size);
@@ -22,5 +23,7 @@ unsigned int	ft_strlcpy(char *dest, char *src, unsigned int size);
 char			*ft_strnstr(const char *big, const char *little, size_t len);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strdup(char *src);
+void			ft_putstr_fd(char *s, int fd);
+char			*ft_itoa(int n);
 
 #endif
