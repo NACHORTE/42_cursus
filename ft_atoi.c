@@ -10,6 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+static int	ft_isspace(char c)
+{
+	return ((c >= 9 && c <= 13) || c == ' ');
+}
+
 int	ft_atoi(const char *str)
 {
 	int	num;
@@ -17,7 +22,7 @@ int	ft_atoi(const char *str)
 
 	neg = 1;
 	num = 0;
-	while (*str == ' ' && *str != '\0')
+	while (ft_isspace(*str) && *str != '\0')
 		str++;
 	while (*str != '\0')
 	{
