@@ -6,13 +6,13 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:58:27 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/08 18:58:27 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:22:50 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strtim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set)
 {
 	int	len;
 	int	i;

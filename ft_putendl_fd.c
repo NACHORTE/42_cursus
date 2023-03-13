@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:55:38 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/09 12:55:38 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:27:22 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,6 @@ void	ft_putendl_fd(char *s, int fd)
 		ft_putstr_fd(s, fd);
 		ft_putchar_fd('\n', fd);
 	}
+	else
+		ft_putchar_fd('\n', fd);
 }

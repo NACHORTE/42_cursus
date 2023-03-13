@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 12:35:50 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/13 12:10:48 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:06:07 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int		i;
 
 	i = 0;
-	if (*s == '\0')
-		return (0);
 	str = ft_strdup(s);
 	if (str == 0)
 		return (0);

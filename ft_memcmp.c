@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/07 15:39:23 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/07 16:04:03 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/13 15:38:12 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	if (n == 0)
 		return (0);
 	aux = 0;
-	while (*a1 != '\0' && (*a1 == *a2) && (aux < n - 1))
+	while ((*a1 == *a2) && (aux < n - 1))
 	{
 		a1++;
 		a2++;

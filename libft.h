@@ -6,11 +6,11 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:29:52 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/13 12:11:26 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:20:08 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#ifndef LIBFT_H
 
+#ifndef LIBFT_H
 # define LIBFT_H
 
 # include <stdio.h>
@@ -34,7 +34,7 @@ int				ft_isprint(int c);
 char			*ft_itoa(int n);
 void			*ft_memchr(const void *s, int c, size_t n);
 int				ft_memcmp(const void *s1, const void *s2, size_t n);
-void			*memcpy(void *dest, const void *src, size_t n);
+void			*ft_memcpy(void *dest, const void *src, size_t n);
 void			*ft_memmove(void *dest, const void *src, size_t n);
 void			*ft_memset(void *s, int c, size_t n);
 void			ft_putchar_fd(char c, int fd);
@@ -54,7 +54,7 @@ char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int				ft_strncmp(const char *s1, const char *s2, size_t n);
 char			*ft_strnstr(const char *big, const char *little, size_t len);
 char			*ft_strrchr(const char *s, int c);
-char			*ft_strtim(char const *s1, char const *set);
+char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_strupcase(char *str);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
 int				ft_tolower(int c);
