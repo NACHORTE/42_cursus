@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 14:29:52 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/08 14:29:52 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:11:26 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef LIBFT_H
@@ -43,7 +43,7 @@ void			ft_putnbr_fd(int n, int fd);
 void			ft_putstr_fd(char *s, int fd);
 char			**ft_split(char const *s, char c);
 char			*ft_strchr(const char *s, int c);
-char			*ft_strdup(char *src);
+char			*ft_strdup(const char *src);
 void			ft_striteri(char *s, void (*f)(unsigned int, char*));
 char			*ft_strjoin(char const *s1, char const *s2);
 unsigned int	ft_strlcat(char *dest, const char *src, unsigned int size);

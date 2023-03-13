@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 15:45:57 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/10 15:45:57 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:27:27 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*))
 	while (*lst != 0)
 	{
 		temp = (*lst)->next;
-		ft_lstdelone(lst, del);
+		ft_lstdelone(*lst, del);
 		*lst = temp;
 	}
 }

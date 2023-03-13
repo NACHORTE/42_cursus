@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 19:47:29 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/08 19:47:29 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/13 14:08:22 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,29 +47,42 @@ static int	ft_countchars(char const *s, char c)
 	return (chars);
 }
 
+static void	ft_free(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return ;
+	while (str[i] != 0)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	int		i;
 	int		j;
-	int		chars;
 	int		total;
 	char	**array;
 
 	total = ft_countwords(s, c);
-	array = malloc(sizeof(char *) * total);
-	if (array == 0 || *s == '\0' || total == 0)
+	array = malloc(sizeof(char *) * (total + 1));
+	if (array == 0)
 		return (0);
+	array[total] = NULL;
 	i = 0;
 	j = 0;
-	while (s[i] != '\0' && j <= total)
+	while (s[i] != '\0' && j < total)
 	{
 		while (s[i] == c)
 			i++;
-		chars = ft_countchars(&s[i], c);
-		array[j] = malloc(sizeof(char) * chars);
-		if (array[j] == 0)
-			return (0);
-		array[j++] = ft_substr(s, i, chars);
+		array[j++] = ft_substr(s, i, ft_countchars(&s[i], c));
+		if (array[j - 1] == 0)
+			ft_free(array);
 		while (s[i] != c && s[i] != '\0')
 			i++;
 	}

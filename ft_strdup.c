@@ -6,13 +6,13 @@
 /*   By: iortega- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 13:29:35 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/07 14:11:34 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:11:10 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(char *src)
+char	*ft_strdup(const char *src)
 {
 	int		len;
 	char	*dest;

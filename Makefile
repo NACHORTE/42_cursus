@@ -6,7 +6,7 @@
 #    By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:32:22 by iortega-          #+#    #+#              #
-#    Updated: 2023/03/08 16:32:22 by iortega-         ###   ########.fr        #
+#    Updated: 2023/03/13 12:11:33 by iortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRCS		= ft_atoi.c \
 			ft_putchar_fd.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c \
-			ft_putstr_fs.c \
+			ft_putstr_fd.c \
 			ft_split.c \
 			ft_strchr.c \
 			ft_strdup.c \

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/09 11:51:36 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/07 13:03:42 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:58:13 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,11 @@ unsigned int	ft_strlcat(char *dest, const char *src, unsigned int size)
 {
 	unsigned int	destl;
 	unsigned int	srcl;
+	unsigned int	initial;
 	char			*aux;
 
 	destl = ft_strlen(dest);
+	initial = destl;
 	srcl = ft_strlen(src);
 	if (size == 0)
 		return (srcl);
@@ -34,5 +36,5 @@ unsigned int	ft_strlcat(char *dest, const char *src, unsigned int size)
 	}
 	if (size != 0)
 		*aux = '\0';
-	return (destl + srcl);
+	return (initial + srcl);
 }

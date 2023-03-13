@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 01:45:02 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/09 01:45:02 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/13 12:02:48 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,7 @@ static char	*ft_isnegative(int n, int *i, char *num)
 char	*ft_itoa(int n)
 {
 	char	*num;
-	int		numbers;
 	int		i;
-	int		j;
 
 	num = NULL;
 	num = ft_isnegative(n, &i, num);
