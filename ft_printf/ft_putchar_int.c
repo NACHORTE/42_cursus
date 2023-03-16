@@ -1,26 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_int.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 19:03:55 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/16 19:03:55 by iortega-         ###   ########.fr       */
+/*   Created: 2023/03/17 00:02:24 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/17 00:02:24 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
+#include "ft_printf.h"
 
-# define FT_PRINTF_H
-
-# include <stdarg.h>
-# include "libft/libft.h"
-
-void	ft_putnbr_base(int nbr, char *base);
-void	ft_putunbr_fd(unsigned int n, int fd);
-int		ft_putchar_int(char c, int fd);
-int		ft_putnbr_int(int n, int fd, int i);
-int		ft_putstr_int(char *s, int fd);
-
-#endif
+int	ft_putchar_int(char c, int fd)
+{
+	write(fd, &c, 1);
+	return (1);
+}
