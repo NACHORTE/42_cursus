@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putunbr_fd.c                                    :+:      :+:    :+:   */
+/*   ft_putunbr_int.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,26 @@
 
 #include "ft_printf.h"
 
-void	ft_putunbr_fd(unsigned int n, int fd)
+static int	ft_count(int n)
+{
+	int	i;
+
+	i = 0;
+	if (n < 0)
+	{
+		i++;
+		n = -n;
+	}
+	while (n > 9)
+	{
+		i++;
+		n = n / 10;
+	}
+	i++;
+	return (i);
+}
+
+int	ft_putunbr_int(unsigned int n, int fd)
 {
 	if (n < 10)
 		ft_putchar_fd((char)(n + '0'), fd);
@@ -21,4 +40,5 @@ void	ft_putunbr_fd(unsigned int n, int fd)
 		ft_putnbr_fd(n / 10, fd);
 		ft_putchar_fd(n % 10 + '0', fd);
 	}
+	return (ft_count(n));
 }

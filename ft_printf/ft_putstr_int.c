@@ -14,13 +14,7 @@
 
 int	ft_putstr_int(char *s, int fd)
 {
-	int	i;
-
-	i = 0;
 	if (*s != '\0')
-	{
 		write(fd, s, ft_strlen(s));
-		i++;
-	}
-	return (i);
+	return (ft_strlen(s));
 }
