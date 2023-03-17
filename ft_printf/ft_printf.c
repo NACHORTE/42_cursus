@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_cases(va_list *args, char id, int j)
+static int	ft_cases(va_list *args, char id, int j)
 {
 	if (id == 'c')
 		j = j + ft_putchar_int(va_arg(*args, int), 1);
@@ -23,9 +23,9 @@ int	ft_cases(va_list *args, char id, int j)
 	else if (id == 'u')
 		j = j + ft_putunbr_int(va_arg(*args, unsigned int), 1);
 	else if (id == 'x')
-		j = j + ft_putnbr_base(va_arg(*args, int), "0123456789abcdef");
+		j = j + ft_puthex(va_arg(*args, int), id);
 	else if (id == 'X')
-		j = j + ft_putnbr_base(va_arg(*args, int), "0123456789ABCDEF");
+		j = j + ft_puthex(va_arg(*args, int), id);
 	else if (id == '%')
 		j = j + ft_putchar_int(id, 1);
 	return (j);
@@ -42,9 +42,11 @@ int	ft_printf(char const *str, ...)
 	va_start(args, str);
 	while (str[i])
 	{
-		if (str[i++] == '%')
+		if (str[i] == '%')
 		{
+			i++;
 			printed = printed + ft_cases(&args, str[i], printed);
+			i++;
 		}
 		else
 		{
@@ -52,4 +54,5 @@ int	ft_printf(char const *str, ...)
 			printed++;
 		}
 	}
+	return (printed);
 }
