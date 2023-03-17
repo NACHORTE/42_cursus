@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 00:02:43 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/17 00:02:43 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:03:03 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_count(int n)
 	return (i);
 }
 
-int	ft_putnbr_int(int n, int fd, int i)
+int	ft_putnbr_int(int n, int fd)
 {
 	if (n == -2147483648)
 	{

@@ -1,18 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iortega- <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 13:59:50 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/07 14:06:11 by iortega-         ###   ########.fr       */
+/*   Created: 2023/02/10 12:06:30 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/17 12:14:40 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isascii(int c)
+#include "ft_printf.h"
+
+size_t	ft_strlen(const char *str)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	int	aux;
+
+	aux = 0;
+	while (*str != '\0')
+	{
+		aux++;
+		str++;
+	}
+	return (aux);
 }

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:56:29 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/16 18:56:29 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/17 12:54:05 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_cases(va_list *args, char id, int j)
 	if (id == 'c')
 		j = j + ft_putchar_int(va_arg(*args, int), 1);
 	else if (id == 'i' || id == 'd')
-		j = j + ft_putnbr_int(va_arg(*args, int), 1, 0);
+		j = j + ft_putnbr_int(va_arg(*args, int), 1);
 	else if (id == 's')
 		j = j + ft_putstr_int(va_arg(*args, char *), 1);
 	else if (id == 'u')
@@ -45,13 +45,15 @@ int	ft_printf(char const *str, ...)
 		if (str[i] == '%')
 		{
 			i++;
-			printed = printed + ft_cases(&args, str[i], printed);
+			printed = ft_cases(&args, str[i], printed);
 			i++;
 		}
 		else
 		{
 			ft_putchar_fd(str[i], 1);
-			printed++;
+			if (str[i] != '\0')
+				printed++;
+			i++;
 		}
 	}
 	return (printed);

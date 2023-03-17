@@ -1,27 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_striteri.c                                      :+:      :+:    :+:   */
+/*   ft_putunbr_int.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/09 12:44:21 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/13 12:03:13 by iortega-         ###   ########.fr       */
+/*   Created: 2023/03/17 12:01:41 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/17 12:01:46 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_striteri(char *s, void (*f)(unsigned int, char*))
+static int	ft_count(int n)
 {
-	unsigned int		i;
+	int	i;
 
 	i = 0;
-	if (*s == '\0')
-		return ;
-	while (s[i] != '\0')
+	if (n < 0)
 	{
-		f(i, &s[i]);
 		i++;
+		n = -n;
 	}
+	while (n > 9)
+	{
+		i++;
+		n = n / 10;
+	}
+	i++;
+	return (i);
+}
+
+int	ft_putunbr_int(unsigned int n, int fd)
+{
+	if (n < 10)
+		ft_putchar_fd((char)(n + '0'), fd);
+	else
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putchar_fd(n % 10 + '0', fd);
+	}
+	return (ft_count(n));
 }
