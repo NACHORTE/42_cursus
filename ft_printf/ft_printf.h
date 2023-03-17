@@ -17,10 +17,10 @@
 # include <stdarg.h>
 # include "libft/libft.h"
 
-void	ft_putnbr_base(int nbr, char *base);
-void	ft_putunbr_fd(unsigned int n, int fd);
+int		ft_putunbr_fd(unsigned int n, int fd);
 int		ft_putchar_int(char c, int fd);
 int		ft_putnbr_int(int n, int fd, int i);
 int		ft_putstr_int(char *s, int fd);
+int		ft_puthex(int nbr, char a);
 
 #endif
