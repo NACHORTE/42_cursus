@@ -27,9 +27,14 @@ static int	ft_cases(va_list *args, char id, int j)
 	else if (id == 'X')
 		j = j + ft_puthex(va_arg(*args, int), id);
 	else if (id == 'p')
-		j = j + ft_printmemo(va_arg(*args, long int));
+		j = j + ft_printmemo(va_arg(*args, unsigned long int));
 	else if (id == '%')
 		j = j + ft_putchar_int(id, 1);
+	else
+	{
+		j = j + ft_putchar_int('%', 1);
+		j = j + ft_putchar_int(id, 1);
+	}
 	return (j);
 }
 
@@ -42,7 +47,7 @@ int	ft_printf(char const *str, ...)
 	i = 0;
 	printed = 0;
 	va_start(args, str);
-	while (str[i])
+	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
 		{

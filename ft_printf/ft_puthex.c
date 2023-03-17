@@ -12,12 +12,29 @@
 
 #include "ft_printf.h"
 
+static char	*ft_rev(char *str)
+{
+	int		i;
+	char	a;
+
+	i = 0;
+	while (i < ((int) ft_strlen(str) / 2))
+	{
+		a = str[ft_strlen(str) - 1 - i];
+		str[ft_strlen(str) - 1 - i] = str[i];
+		str[i] = a;
+		i++;
+	}
+	return (str);
+}
+
 int	ft_puthex(int nbr, char a)
 {
 	char	*hex_digits;
 	int		i;
 	int		j;
 	char	result[10];
+	char	*final;
 
 	if (a == 'X')
 		hex_digits = "0123456789ABCDEF";
@@ -31,6 +48,7 @@ int	ft_puthex(int nbr, char a)
 		nbr = nbr / 16;
 	}
 	result[i] = '\0';
-	ft_putstr_fd(result, 1);
+	final = ft_rev(result);
+	ft_putstr_fd(final, 1);
 	return (i);
 }

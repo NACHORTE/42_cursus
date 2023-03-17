@@ -28,36 +28,38 @@ static char	*ft_rev(char *str)
 	return (str);
 }
 
-static int	ft_puthex_long(long int nbr, char a)
+static int	ft_puthex_long(unsigned long int nbr, char a)
 {
 	char	*hex_digits;
 	int		i;
 	int		j;
-	char	result[64];
+	char	result[13];
 	char	*final;
 
+	result[12] = '\0';
 	if (a == 'X')
 		hex_digits = "0123456789ABCDEF";
 	if (a == 'x')
 		hex_digits = "0123456789abcdef";
-	i = 0;
+	i = 11;
 	while (nbr > 0)
 	{
 		j = nbr % 16;
-		result[i++] = hex_digits[j];
+		result[i--] = hex_digits[j];
 		nbr = nbr / 16;
 	}
-	result[i] = '\0';
-	final = ft_rev(result);
+	while (i >= 0)
+		result[i--] = '0';
 	ft_putstr_fd(result, 1);
-	return (i);
+	return (12);
 }
 
-int	ft_printmemo(long int memo)
+int	ft_printmemo(unsigned long int memo)
 {
 	int	i;
 
 	write (1, "0x", 2);
+	printf("\n%lu\n", memo);
 	i = ft_puthex_long(memo, 'x');
 	return (i + 2);
 }

@@ -3,7 +3,9 @@
 int	main(int c, char **v)
 {
 	int a;
-	a = 0;
-	printf("\n%d\n", ft_printf(v[1], NULL));
+	a = 1;
+	printf("\n%d\n", ft_printf("\na"));
+	printf("\n");
+	printf("\n");
 	return (0);
 }
