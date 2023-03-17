@@ -2,6 +2,8 @@
 #include <stdio.h>
 int	main(int c, char **v)
 {
-	printf("%d", ft_printf(v[1], NULL));
+	int a;
+	a = 0;
+	printf("\n%d\n", ft_printf(v[1], NULL));
 	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/17 11:52:27 by iortega-          #+#    #+#              #
-#    Updated: 2023/03/17 12:14:31 by iortega-         ###   ########.fr        #
+#    Updated: 2023/03/17 15:17:14 by iortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRCS		= ft_printf.c \
 			ft_putnbr_fd.c \
 			ft_putstr_fd.c \
 			ft_strlen.c \
+			ft_printmemo.c \
 
 OBJS		= $(SRCS:%.c=%.o)
 

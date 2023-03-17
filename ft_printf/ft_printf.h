@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 19:03:55 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/17 12:18:37 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:17:03 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putnbr_fd(int n, int fd);
 void	ft_putstr_fd(char *s, int fd);
 size_t	ft_strlen(const char *str);
+int		ft_printmemo(long int memo);
 
 #endif

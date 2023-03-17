@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:56:29 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/17 12:54:05 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/17 15:13:53 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static int	ft_cases(va_list *args, char id, int j)
 		j = j + ft_puthex(va_arg(*args, int), id);
 	else if (id == 'X')
 		j = j + ft_puthex(va_arg(*args, int), id);
+	else if (id == 'p')
+		j = j + ft_printmemo(va_arg(*args, long int));
 	else if (id == '%')
 		j = j + ft_putchar_int(id, 1);
 	return (j);
@@ -56,5 +58,6 @@ int	ft_printf(char const *str, ...)
 			i++;
 		}
 	}
+	va_end(args);
 	return (printed);
 }
