@@ -6,13 +6,13 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 12:01:41 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/17 12:01:46 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/18 14:18:14 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_count(int n)
+static int	ft_count(unsigned int n)
 {
 	int	i;
 

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 00:31:01 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/17 15:36:53 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/18 15:17:19 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ int	ft_puthex(int nbr, char a)
 	char	result[10];
 	char	*final;
 
+	if (nbr == 0)
+	{
+		write(1, "0", 1);
+		return (1);
+	}
 	if (a == 'X')
 		hex_digits = "0123456789ABCDEF";
 	if (a == 'x')
