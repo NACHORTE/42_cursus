@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/10 16:02:54 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/13 15:13:55 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/18 13:44:27 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*start;
 	t_list	*last;
 
-	if (!lst)
+	if (!lst || !f || !del)
 		return (0);
 	new = ft_lstnew(f(lst->content));
+	if (!new)
+		return (0);
 	start = new;
 	last = new;
 	lst = lst->next;
@@ -30,7 +32,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		if (!new)
 		{
 			ft_lstclear(&start, del);
-			return (NULL);
+			return (0);
 		}
 		last->next = new;
 		last = new;
