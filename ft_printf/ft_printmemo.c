@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 15:11:53 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/18 16:53:34 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/18 16:58:02 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static int	ft_puthex_long(unsigned long int nbr, char a)
 	int		j;
 	char	result[20];
 	int		z;
+
 	result[19] = '\0';
 	if (a == 'X')
 		hex_digits = "0123456789ABCDEF";
