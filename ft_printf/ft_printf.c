@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 18:56:29 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/18 18:08:31 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/18 18:10:02 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ static int	ft_cases(va_list *args, char id, int j)
 	else if (id == 'u')
 		j = j + ft_putunbr_int(va_arg(*args, unsigned int), 1);
 	else if (id == 'x')
-		j = j + ft_puthex(va_arg(*args, unsigned long int), id);
+		j = j + ft_puthex(va_arg(*args, unsigned int), id);
 	else if (id == 'X')
-		j = j + ft_puthex(va_arg(*args, unsigned long int), id);
+		j = j + ft_puthex(va_arg(*args, unsigned int), id);
 	else if (id == 'p')
 		j = j + ft_printmemo(va_arg(*args, unsigned long int));
 	else if (id == '%')
