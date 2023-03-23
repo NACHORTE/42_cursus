@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 13:23:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/23 13:23:10 by iortega-         ###   ########.fr       */
+/*   Created: 2023/03/23 13:31:03 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/23 13:31:03 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 size_t	ft_strlen(const char *str)
 {
@@ -92,6 +92,7 @@ char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		total;
+	int		i;
 
 	if (!s1)
 	{
@@ -104,6 +105,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	str = malloc(sizeof(char) * total + 1);
 	if (str == 0)
 		return (0);
+	i = 0;
 	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
 	ft_strlcat(str, s2, total + 1);
 	return (str);

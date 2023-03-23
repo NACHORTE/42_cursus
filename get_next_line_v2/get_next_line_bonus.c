@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 12:14:39 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/23 12:14:39 by iortega-         ###   ########.fr       */
+/*   Created: 2023/03/23 13:51:14 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/23 13:51:14 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_read_buff(int fd, char *buff)
 {
@@ -23,6 +23,11 @@ char	*ft_read_buff(int fd, char *buff)
 	bytes = 1;
 	while (!ft_strchr(buff, '\n') && bytes != 0)
 	{
+		if (bytes == -1)
+		{
+			free(reading);
+			return (NULL);
+		}
 		bytes = read(fd, reading, BUFFER_SIZE);
 		reading[bytes] = '\0';
 		buff = ft_strjoin(buff, reading);
@@ -87,16 +92,16 @@ char	*ft_next(char *buff)
 
 char	*get_next_line(int fd)
 {
-	static char	*buff;
+	static char	*buff[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
 		return (NULL);
-	buff = ft_read_buff(fd, buff);
-	if (!buff)
+	buff[fd] = ft_read_buff(fd, buff[fd]);
+	if (!buff[fd])
 		return (NULL);
-	line = ft_cut_line(buff);
-	buff = ft_next(buff);
+	line = ft_cut_line(buff[fd]);
+	buff[fd] = ft_next(buff[fd]);
 	return (line);
 }
 /*
