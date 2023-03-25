@@ -19,7 +19,9 @@
 
 # ifndef BUFFER_SIZE
 
-#  define BUFFER_SIZE 10
+# define BUFFER_SIZE 10
+
+# endif
 
 size_t			ft_strlen(const char *str);
 
@@ -32,7 +34,5 @@ unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int size);
 char			*ft_strjoin(char *s1, char *s2);
 
 char			*get_next_line(int fd);
-
-# endif
 
 #endif
