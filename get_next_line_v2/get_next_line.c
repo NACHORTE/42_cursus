@@ -6,13 +6,13 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:14:39 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/23 12:14:39 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:58:35 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*ft_read_buff(int fd, char *buff)
+static char	*ft_read_buff(int fd, char *buff)
 {
 	int		bytes;
 	char	*reading;
@@ -31,13 +31,13 @@ char	*ft_read_buff(int fd, char *buff)
 	return (buff);
 }
 
-char	*ft_cut_line(char *buff)
+static char	*ft_cut_line(char *buff)
 {
 	int		i;
 	char	*line;
 
 	i = 0;
-	if (*buff == 0)
+	if (!buff[i])
 		return (NULL);
 	while (buff[i] != '\0' && buff[i] != '\n')
 		i++;
@@ -45,7 +45,7 @@ char	*ft_cut_line(char *buff)
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (buff[i] != '\0' && buff[i] != '\n')
+	while (buff[i] && buff[i] != '\n')
 	{
 		line[i] = buff[i];
 		i++;
@@ -59,16 +59,16 @@ char	*ft_cut_line(char *buff)
 	return (line);
 }
 
-char	*ft_next(char *buff)
+static char	*ft_next(char *buff)
 {
 	int		i;
 	int		j;
 	char	*newbuff;
 
 	i = 0;
-	while (buff[i] != '\0' && buff[i] != '\n')
+	while (buff[i] && buff[i] != '\n')
 		i++;
-	if (buff[i] == '\0')
+	if (!buff[i])
 	{
 		free(buff);
 		return (NULL);

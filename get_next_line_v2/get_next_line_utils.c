@@ -1,110 +1,65 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_uutils.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/23 13:23:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/23 13:23:10 by iortega-         ###   ########.fr       */
+/*   Created: 2023/03/28 20:43:33 by iortega-          #+#    #+#             */
+/*   Updated: 2023/03/28 20:44:54 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen(char *s)
 {
-	int	aux;
+	size_t	i;
 
-	aux = 0;
-	while (*str != '\0')
-	{
-		aux++;
-		str++;
-	}
-	return (aux);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, char c)
 {
+	int	i;
+
 	if (!s)
 		return (NULL);
-	while (*s)
+	i = -1;
+	while (s[++i])
 	{
-		if (*s == (char) c)
-			return ((char *) s);
-		s++;
+		if (s[i] == c)
+			return ((char *)&(s[i]));
 	}
-	if ((char) c == '\0')
-		return ((char *) s);
 	return (0);
-}
-
-unsigned int	ft_strlcat(char *dest, const char *src, unsigned int size)
-{
-	unsigned int	destl;
-	unsigned int	srcl;
-	unsigned int	initial;
-	char			*aux;
-
-	destl = ft_strlen(dest);
-	initial = destl;
-	srcl = ft_strlen(src);
-	if (size == 0)
-		return (srcl);
-	if (destl >= size)
-		return (srcl + size);
-	aux = dest + destl;
-	while (*src != '\0' && destl < (size - 1) && size >= 2)
-	{
-		*aux = *src;
-		aux++;
-		src++;
-		destl++;
-	}
-	if (size != 0)
-		*aux = '\0';
-	return (initial + srcl);
-}
-
-unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int size)
-{
-	unsigned int	aux;
-	unsigned int	counter;
-
-	aux = 0;
-	counter = 0;
-	while (src[counter] != '\0')
-		counter++;
-	if (size != 0)
-	{
-		while (src[aux] != '\0' && aux < (size - 1))
-		{
-			dest[aux] = src[aux];
-			aux++;
-		}
-		dest[aux] = '\0';
-	}
-	return (counter);
 }
 
 char	*ft_strjoin(char *s1, char *s2)
 {
-	char	*str;
-	int		total;
+	size_t	i;
+	size_t	j;
+	char	*join;
 
 	if (!s1)
 	{
 		s1 = (char *)malloc(1 * sizeof(char));
 		s1[0] = '\0';
 	}
-	if (s1 == 0 || s2 == 0)
-		return (0);
-	total = ft_strlen(s1) + ft_strlen(s2);
-	str = malloc(sizeof(char) * total + 1);
-	if (str == 0)
-		return (0);
-	ft_strlcpy(str, s1, ft_strlen(s1) + 1);
-	ft_strlcat(str, s2, total + 1);
-	return (str);
+	if (!s1 || !s2)
+		return (NULL);
+	join = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
+	if (!join)
+		return (NULL);
+	i = -1;
+	j = -1;
+	while (s1[++i] != '\0')
+		join[i] = s1[i];
+	while (s2[++j] != '\0')
+		join[i++] = s2[j];
+	join[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	free(s1);
+	return (join);
 }

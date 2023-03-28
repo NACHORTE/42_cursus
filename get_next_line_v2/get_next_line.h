@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:14:03 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/23 12:14:03 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/28 20:47:05 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,9 @@
 
 # endif
 
-size_t			ft_strlen(const char *str);
+size_t			ft_strlen(char *s);
 
-char			*ft_strchr(const char *s, int c);
-
-unsigned int	ft_strlcat(char *dest, const char *src, unsigned int size);
-
-unsigned int	ft_strlcpy(char *dest, const char *src, unsigned int size);
+char			*ft_strchr(char *s, char c);
 
 char			*ft_strjoin(char *s1, char *s2);
 

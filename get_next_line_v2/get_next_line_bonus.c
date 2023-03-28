@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:51:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/23 13:51:14 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/28 21:00:05 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,15 @@ char	*ft_cut_line(char *buff)
 	char	*line;
 
 	i = 0;
-	if (*buff == 0)
+	if (!buff[i])
 		return (NULL);
-	while (buff[i] != '\0' && buff[i] != '\n')
+	while (buff[i] && buff[i] != '\n')
 		i++;
 	line = malloc(sizeof(char) * (i + 2));
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (buff[i] != '\0' && buff[i] != '\n')
+	while (buff[i] && buff[i] != '\n')
 	{
 		line[i] = buff[i];
 		i++;
@@ -71,9 +71,9 @@ char	*ft_next(char *buff)
 	char	*newbuff;
 
 	i = 0;
-	while (buff[i] != '\0' && buff[i] != '\n')
+	while (buff[i] && buff[i] != '\n')
 		i++;
-	if (buff[i] == '\0')
+	if (!buff[i])
 	{
 		free(buff);
 		return (NULL);
