@@ -6,11 +6,12 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:14:39 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/28 20:58:35 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:17:49 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
 
 static char	*ft_read_buff(int fd, char *buff)
 {
@@ -21,13 +22,19 @@ static char	*ft_read_buff(int fd, char *buff)
 	if (!reading)
 		return (NULL);
 	bytes = 1;
-	while (!ft_strchr(buff, '\n') && bytes != 0)
+	while (!ft_strchr(buff, '\n') && bytes > 0)
 	{
 		bytes = read(fd, reading, BUFFER_SIZE);
-		reading[bytes] = '\0';
-		buff = ft_strjoin(buff, reading);
+		if (bytes > 0)
+		{
+			reading[bytes] = '\0';
+			buff = ft_strjoin(buff, reading);
+		}
 	}
 	free(reading);
+	reading = 0;
+	if (!buff)
+		return (0);
 	return (buff);
 }
 
@@ -87,9 +94,15 @@ static char	*ft_next(char *buff)
 
 char	*get_next_line(int fd)
 {
-	static char	*buff;
+	static char	*buff = NULL;
 	char		*line;
 
+	if (read(fd, 0, 0) < 0)
+	{
+		free (buff);
+		buff = 0;
+		return (0);
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
 		return (NULL);
 	buff = ft_read_buff(fd, buff);

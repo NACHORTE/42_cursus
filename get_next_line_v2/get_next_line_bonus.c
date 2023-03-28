@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 13:51:14 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/28 21:00:05 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/03/28 23:17:46 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,16 @@ char	*ft_read_buff(int fd, char *buff)
 			return (NULL);
 		}
 		bytes = read(fd, reading, BUFFER_SIZE);
-		reading[bytes] = '\0';
-		buff = ft_strjoin(buff, reading);
+		if (bytes > 0)
+		{
+			reading[bytes] = '\0';
+			buff = ft_strjoin(buff, reading);
+		}
 	}
 	free(reading);
+	reading = 0;
+	if (!buff)
+		return (0);
 	return (buff);
 }
 
@@ -95,6 +101,12 @@ char	*get_next_line(int fd)
 	static char	*buff[1024];
 	char		*line;
 
+	if (read(fd, 0, 0) < 0)
+	{
+		free (buff[fd]);
+		buff[fd] = 0;
+		return (0);
+	}
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, NULL, 0) == -1)
 		return (NULL);
 	buff[fd] = ft_read_buff(fd, buff[fd]);
