@@ -75,21 +75,22 @@ int	check_error(int argc, char **argv)
 {
 	int	i;
 	int	j;
-	int	error;
 
 	if (argc <= 1)
-		return (1);
+		return (error_msg());
 	i = 1;
-	error = 0;
 	while (i < argc)
 	{
 		j = 0;
+		if (argv[i][j] == '-')
+			j++;
 		while (argv[i][j] != '\0')
 		{
-			if (!ft_isdigit((int) argv[i][j]))
+			if (!ft_isdigit((int) argv[i][j++]))
 				return (error_msg());
-			j++;
 		}
+		if (ft_strlen(argv[i]) > 11 || ft_strlen(argv[i]) == 0)
+			return (error_msg());
 		if (ft_atoi_long(argv[i]) > INT_MAX || ft_atoi_long(argv[i]) < INT_MIN)
 			return (error_msg());
 		i++;
