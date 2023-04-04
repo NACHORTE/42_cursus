@@ -12,36 +12,47 @@
 
 #include "push_swap.h"
 
-static int	*get_array(int numbers, char **input)
+static t_list	*get_array(int numbers, char **input)
 {
-	int	*a;
+	t_list	*a;
 	int	i;
+	int	number;
+	t_list	*aux;
 
-	a = malloc(sizeof(int) * numbers);
-	if (!a)
-		return (0);
-	i = 0;
-	while (i < numbers)
+	i = 1;
+	a = NULL;
+	while (i <= numbers)
 	{
-		a[i] = ft_atoi(input[i + 1]);
+		number = ft_atoi(input[i]);
+		aux = ft_lstnew(number);
+		if (!aux)
+			return(0);
+		ft_lstadd_back(&a, aux);
 		i++;
 	}
+	/*printf("%d\n", ft_lstsize(a));
+	t_list *temp = a;
+	while (temp)
+	{
+   		int x = temp->content;
+    	printf("%d\n", x);
+    	temp = temp->next;
+	}*/
 	return (a);
 }
 
 int	main(int argc, char **argv)
 {
-	int	*a;
-	int	*b;
+	t_list	*a;
+	t_list	*b;
 	int	size_a;
 	int	size_b;
 
-	if (check_error(argc, argv))
+	if (check_error(argc, argv) || argc == 2)
 		return (0);
 	size_a = argc - 1;
 	size_b = 0;
-	b = malloc(sizeof(int) * size_a);
-	if (!b)
-		return (0);
+	b = NULL;
 	a = get_array(size_a, argv);
+	sort(a, b, size_a, size_b);
 }

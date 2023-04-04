@@ -16,11 +16,13 @@
 # include "libft/libft.h"
 # include "limits.h"
 
-void	reverse(int *x, int sizex);
-void	rotate(int *x, int sizex);
-void	push(int *x, int *y, int sizex, int sizey);
-void	swap(int *x, int size);
+void	reverse(t_list **stack);
+void	rotate(t_list **stack);
+void	push_btoa(t_list **a, t_list **b);
+void	swap(t_list **stack);
 int		check_error(int argc, char **argv);
 int		ft_strcmp(const char *s1, const char *s2);
+void		*sort_int_array(int *array, int size);
+void	sort(t_list *a, t_list *b, int size_a, int size_b);
 
 #endif

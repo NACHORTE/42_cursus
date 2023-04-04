@@ -10,71 +10,66 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-void	swap(int *x, int size)
-{
-	int	tmp;
+#include "push_swap.h"
 
-	if (size >= 2)
+void	swap(t_list **stack)
+{
+	t_list	*first;
+	t_list	*second;
+	int		temp;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+		return;
+	first = *stack;
+	second = first->next;
+	temp = first->content;
+	first->content = second->content;
+	second->content = temp;
+	write(1, "sa\n", 3);
+}
+
+void	push_btoa(t_list **a, t_list **b)
+{
+	t_list	*temp;
+
+	if (*b != NULL)
 	{
-		tmp = x[0];
-		x[0] = x[1];
-		x[1] = x[0];
+		temp = *b;
+		*b = (*b)->next;
+		ft_lstadd_front(a, temp);
 	}
 }
 
-void	push(int *x, int *y, int sizex, int sizey)
+void	rotate(t_list **stack)
 {
-	int	tmp;
-	int	pos;
+	t_list	*first;
+	t_list	*last;
 
-	pos = 0;
-	if (sizey != 0)
-	{
-		tmp = y[0];
-		while (pos != (sizey - 1))
-		{
-			y[pos] = y[pos + 1];
-			pos++;
-		}
-		pos = 0;
-		while (pos != sizex)
-		{
-			x[pos + 1] = x[pos];
-			pos++;
-		}
-		x[0] = tmp;
-	}
+	if (!stack || !*stack || !(*stack)->next)
+		return ;
+	first = *stack;
+	*stack = (*stack)->next;
+	last = ft_lstlast(*stack);
+	last->next = first;
+	first->next = NULL;
 }
 
-void	rotate(int *x, int sizex)
+void	reverse(t_list **stack)
 {
-	int	pos;
-	int	tmp;
+	t_list	*last;
+	t_list	*prev_last;
 
-	pos = 0;
-	tmp = x[0];
-	while (pos < sizex - 1)
+	if (!*stack || !(*stack)->next)
+		return ;
+	last = *stack;
+	while (last->next)
 	{
-		x[pos] = x[pos + 1];
-		pos++;
+		prev_last = last;
+		last = last->next;
 	}
-	x[sizex - 1] = tmp;
-}
-
-void	reverse(int *x, int sizex)
-{
-	int	pos;
-	int	tmp;
-
-	sizex--;
-	pos = sizex;
-	tmp = x[pos];
-	while (pos != 0)
-	{
-		x[pos] = x[pos - 1];
-		pos--;
-	}
-	x[0] = tmp;
+	prev_last->next = NULL;
+	last->next = *stack;
+	*stack = last;
 }
 
 int	ft_strcmp(const char *s1, const char *s2)

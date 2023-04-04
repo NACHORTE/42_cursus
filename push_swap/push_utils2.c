@@ -1,25 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   push_utils2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/10 15:10:59 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/18 13:48:08 by iortega-         ###   ########.fr       */
+/*   Created: 2023/04/04 15:45:44 by iortega-          #+#    #+#             */
+/*   Updated: 2023/04/04 15:45:44 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstnew(int content)
+void	*sort_int_array(int *array, int size)
 {
-	t_list	*newl;
+	int	i;
+	int	j;
+	int	aux;
 
-	newl = malloc(sizeof(t_list));
-	if (newl == 0)
-		return (0);
-	newl->content = content;
-	newl->next = 0;
-	return (newl);
+	i = 0;
+	while (i < size - 1)
+	{
+		j = i + 1;
+		while (j < size)
+		{
+			if (array[j] < array[i])
+			{
+				aux = array[i];
+				array[i] = array[j];
+				array[j] = aux;
+			}
+			j++;
+		}
+		i++;
+	}
 }
