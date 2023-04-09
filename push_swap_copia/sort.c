@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:12:35 by iortega-          #+#    #+#             */
-/*   Updated: 2023/04/04 19:12:35 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/04/09 15:28:26 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	push_chunk(t_list **a, t_list **b, int *a_sorted, int n_push)
 
 	if (n_push == 1)
 		{
-			push_btoa(a, b);
+			push_btoa(a, b, 'a');
 			return ;
 		}
 	while (n_push > 2)
@@ -55,13 +55,13 @@ void	push_chunk(t_list **a, t_list **b, int *a_sorted, int n_push)
 		{
 			if ((*b)->content > a_sorted[1])
 			{
-				push_btoa(a, b);
+				push_btoa(a, b, 'a');
 				j++;
 				n_push--;
 			}
 			else
 			{
-				rotate(b);
+				rotate(b, 'b');
 				rotations++;
 			}
 		}
@@ -71,33 +71,33 @@ void	push_chunk(t_list **a, t_list **b, int *a_sorted, int n_push)
 		{
 			if ((*b)->content > midpoint)
 			{
-				push_btoa(a, b);
+				push_btoa(a, b, 'a');
 				j++;
 				n_push--;
 			}
 			else
 			{
-				rotate(b);
+				rotate(b, 'b');
 				rotations++;
 			}
 		}
 		while (rotations != 0)
 		{
-			reverse(b);
+			reverse(b, 'b');
 			rotations--;
 		}
 	}
 	if ((*b)->content > (*b)->next->content)
 	{
-		push_btoa(a, b);
-		push_btoa(a, b);
+		push_btoa(a, b, 'a');
+		push_btoa(a, b, 'a');
 		return ;
 	}
 	else
 	{
-		swap(b);
-		push_btoa(a, b);
-		push_btoa(a, b);
+		swap(b, 'b');
+		push_btoa(a, b, 'a');
+		push_btoa(a, b, 'a');
 	}
 	return ;
 }
@@ -106,6 +106,8 @@ void	back_to_a(t_list **a, t_list **b, t_chunk chunks, int *a_sorted)
 {
 	int	i;
 
+	if (*b == NULL)
+		return ;
 	i = 0;
 	while (i < chunks.len)
 	{
@@ -162,6 +164,8 @@ t_list	*sort(t_list *a, t_list *b, int size_a, int size_b)
 	full_sorted = sort_a(a, size_a);
 	while (ft_lstsize(a) > 2)
 	{
+		if (check_sorted(a))
+			break;
 		size_a = ft_lstsize(a);
 		a_sorted = sort_a(a, size_a);
 		if (!a_sorted)
@@ -170,22 +174,32 @@ t_list	*sort(t_list *a, t_list *b, int size_a, int size_b)
 		i = 0;
 		while (i < size_a / 2)
 		{
-			if (a->content < midpoint)
+			if (ft_lstlast(a)->content < midpoint)
 			{
-				push_btoa(&b, &a);
+				reverse(&a, 'a');
+				if (check_sorted(a))
+					break;
+				push_btoa(&b, &a, 'b');
 				i++;
 			}
-			else if (ft_lstlast(a)->content < midpoint)
+			else if (a->content < midpoint)
 			{
-				reverse(&a);
-				push_btoa(&b, &a);
+				push_btoa(&b, &a, 'b');
 				i++;
 			}
 			else
-				rotate(&a);
+			{
+				rotate(&a, 'a');
+				if (check_sorted(a))
+					break;
+			}
 		}
-		chunks.len++;
-		new_chunk(&chunks, i);
+		if (i > 0)
+		{
+			chunks.len++;
+			new_chunk(&chunks, i);
+		}
+
 	}
 	reverse_array(chunks.chunks, chunks.len);
 	i = 0;
@@ -199,7 +213,7 @@ t_list	*sort(t_list *a, t_list *b, int size_a, int size_b)
 	if (ft_lstsize(a) == 2)
 	{
 		if (a->content > a->next->content)
-			swap(&a);
+			swap(&a, 'a');
 	}
 	
 	/*print_list(a);
@@ -208,6 +222,6 @@ t_list	*sort(t_list *a, t_list *b, int size_a, int size_b)
 	
 	back_to_a(&a, &b, chunks, full_sorted);
 
-	print_list(a);
+	//print_list(a);
 	return (a);
 }

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 15:45:44 by iortega-          #+#    #+#             */
-/*   Updated: 2023/04/04 15:45:44 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/04/09 15:25:23 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ void	*sort_int_array(int *array, int size)
 
 void print_list(t_list *a)
 {
-	printf ("\n");
 			t_list *temp1 = a;
 	while (temp1)
 	{
@@ -47,4 +46,22 @@ void print_list(t_list *a)
     	temp1 = temp1->next;
 	}
 	printf ("\n");
+}
+
+int	check_sorted(t_list *a)
+{
+	t_list *tmp;
+	int	aux;
+
+	tmp = a;
+	while (tmp)
+	{
+		aux = tmp->content;
+		tmp = tmp->next;
+		if (!tmp)
+			break;
+		if (aux > tmp->content)
+			return (0);
+	}
+	return (1);
 }
