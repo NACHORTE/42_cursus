@@ -12,6 +12,19 @@
 
 #include "push_swap.h"
 
+static void print_list(t_list *a)
+{
+	printf ("\n");
+			t_list *temp1 = a;
+	while (temp1)
+	{
+   		int x = temp1->content;
+    	printf("%d\n", x);
+    	temp1 = temp1->next;
+	}
+	printf ("\n");
+}
+
 static int	*sort_a(t_list *a, int size_a)
 {
 	int *a_sorted;
@@ -33,36 +46,16 @@ static int	*sort_a(t_list *a, int size_a)
 	return (a_sorted);
 }
 
-void	back_toa(t_list **a, t_list **b, int *a_sorted, int midpoint, int n_push)
+void	push_chunk(t_list **a, t_list **b, int *a_sorted, int n_push)
 {
-	int	i;
 	int	midpos;
 	int j;
 	int	rotations;
+	int midpoint;
 
-	printf ("%d\n", n_push);
-	printf ("\n");
-	t_list *temp = *b;
-	while (temp)
-	{
-   		int x = temp->content;
-    	printf("%d\n", x);
-    	temp = temp->next;
-	}
-	printf ("\n");
-	i = 0;
 	if (n_push == 1)
 		{
 			push_btoa(a, b);
-			printf ("+\n");
-			t_list *temp = *a;
-	while (temp)
-	{
-   		int x = temp->content;
-    	printf("%d\n", x);
-    	temp = temp->next;
-	}
-	printf ("+\n");
 			return ;
 		}
 	while (n_push > 2)
@@ -103,7 +96,7 @@ void	back_toa(t_list **a, t_list **b, int *a_sorted, int midpoint, int n_push)
 		}
 		while (rotations != 0)
 		{
-			reverse(&b);
+			reverse(b);
 			rotations--;
 		}
 	}
@@ -111,15 +104,6 @@ void	back_toa(t_list **a, t_list **b, int *a_sorted, int midpoint, int n_push)
 	{
 		push_btoa(a, b);
 		push_btoa(a, b);
-		printf ("-\n");
-	t_list *temp2 = *a;
-	while (temp2)
-	{
-   		int x = temp2->content;
-    	printf("%d\n", x);
-    	temp2 = temp2->next;
-	}
-	printf ("-\n");
 		return ;
 	}
 	else
@@ -128,16 +112,54 @@ void	back_toa(t_list **a, t_list **b, int *a_sorted, int midpoint, int n_push)
 		push_btoa(a, b);
 		push_btoa(a, b);
 	}
-	printf ("-\n");
-	t_list *temp2 = *a;
-	while (temp2)
-	{
-   		int x = temp2->content;
-    	printf("%d\n", x);
-    	temp2 = temp2->next;
-	}
-	printf ("-\n");
 	return ;
+}
+
+void	back_to_a(t_list **a, t_list **b, t_chunk chunks, int *a_sorted)
+{
+	int	i;
+
+	i = 0;
+	while (i < chunks.len)
+	{
+		push_chunk(a, b, a_sorted, chunks.chunks[i]);
+		i++;
+	}
+}
+
+void reverse_array(int arr[], int size)
+{
+    int i = 0, j = size - 1;
+    while (i < j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+        i++;
+        j--;
+    }
+}
+
+
+void	new_chunk(t_chunk *chunk, int new)
+{
+	int	*tmp;
+	int	i;
+
+	i = 0;
+	tmp = 0;
+	if (chunk->chunks != 0)
+		tmp = chunk->chunks;
+	chunk->chunks = malloc(sizeof(int) * chunk->len);
+	if (!chunk->chunks)
+		return ;
+	while (i < chunk->len - 1)
+	{
+		chunk->chunks[i] = tmp[i];
+		i++;
+	}
+	chunk->chunks[i] = new;
+	if (tmp)
+		free(tmp);
 }
 
 void	sort(t_list *a, t_list *b, int size_a, int size_b)
@@ -145,15 +167,19 @@ void	sort(t_list *a, t_list *b, int size_a, int size_b)
 	int	*a_sorted;
 	int	midpoint;
 	int	i;
+	t_chunk	chunks;
+	int	*full_sorted;
 
-	//printf("%d\n", midpoint);
-	
+	chunks.len = 0;
+	chunks.chunks = 0;
+	full_sorted = sort_a(a, size_a);
+	while (ft_lstsize(a) > 2)
+	{
 		size_a = ft_lstsize(a);
 		a_sorted = sort_a(a, size_a);
 		if (!a_sorted)
 			exit;
 		midpoint = a_sorted[size_a / 2];
-		printf("\n%d  %d\n", midpoint, size_a);
 		i = 0;
 		while (i < size_a / 2)
 		{
@@ -171,25 +197,29 @@ void	sort(t_list *a, t_list *b, int size_a, int size_b)
 			else
 				rotate(&a);
 		}
-	if (ft_lstsize(a) > 2)
-		sort(a, b, size_a, size_b);
+		chunks.len++;
+		new_chunk(&chunks, i);
+	}
+	reverse_array(chunks.chunks, chunks.len);
+	i = 0;
+	printf ("\n");
+	while (i < chunks.len)
+	{
+		printf("%d ", chunks.chunks[i]);
+		i++;
+	}
+	printf ("\n");
 	if (ft_lstsize(a) == 2)
 	{
 		if (a->content > a->next->content)
 			swap(&a);
 	}
 	
-	printf ("*\n");
-			t_list *temp1 = a;
-	while (temp1)
-	{
-   		int x = temp1->content;
-    	printf("%d\n", x);
-    	temp1 = temp1->next;
-	}
-	printf ("*\n");
+	/*print_list(a);
 
-	back_toa(&a, &b, a_sorted, midpoint - 1, i);
-
+	print_list(b);*/
 	
+	back_to_a(&a, &b, chunks, full_sorted);
+
+	print_list(a);
 }
