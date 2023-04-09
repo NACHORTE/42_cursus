@@ -54,14 +54,6 @@ int	main(int argc, char **argv)
 	size_b = 0;
 	b = NULL;
 	a = get_array(size_a, argv);
-	sort(a, b, size_a, size_b);
-	printf ("/\n");
-			t_list *temp1 = a;
-	while (temp1)
-	{
-   		int x = temp1->content;
-    	printf("%d\n", x);
-    	temp1 = temp1->next;
-	}
-	printf ("/\n");
+	a = sort(a, b, size_a, size_b);
+	print_list(a);
 }

@@ -35,3 +35,16 @@ void	*sort_int_array(int *array, int size)
 		i++;
 	}
 }
+
+void print_list(t_list *a)
+{
+	printf ("\n");
+			t_list *temp1 = a;
+	while (temp1)
+	{
+   		int x = temp1->content;
+    	printf("%d\n", x);
+    	temp1 = temp1->next;
+	}
+	printf ("\n");
+}

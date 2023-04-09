@@ -12,19 +12,6 @@
 
 #include "push_swap.h"
 
-static void print_list(t_list *a)
-{
-	printf ("\n");
-			t_list *temp1 = a;
-	while (temp1)
-	{
-   		int x = temp1->content;
-    	printf("%d\n", x);
-    	temp1 = temp1->next;
-	}
-	printf ("\n");
-}
-
 static int	*sort_a(t_list *a, int size_a)
 {
 	int *a_sorted;
@@ -162,7 +149,7 @@ void	new_chunk(t_chunk *chunk, int new)
 		free(tmp);
 }
 
-void	sort(t_list *a, t_list *b, int size_a, int size_b)
+t_list	*sort(t_list *a, t_list *b, int size_a, int size_b)
 {
 	int	*a_sorted;
 	int	midpoint;
@@ -222,4 +209,5 @@ void	sort(t_list *a, t_list *b, int size_a, int size_b)
 	back_to_a(&a, &b, chunks, full_sorted);
 
 	print_list(a);
+	return (a);
 }
