@@ -151,7 +151,7 @@ void	new_chunk(t_chunk *chunk, int new)
 		free(tmp);
 }
 
-t_list	*sort(t_list *a, t_list *b, int size_a, int size_b)
+t_list	*sort(t_list *a, t_list *b, int size_a)
 {
 	int	*a_sorted;
 	int	midpoint;

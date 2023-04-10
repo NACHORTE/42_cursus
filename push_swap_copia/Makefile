@@ -20,7 +20,7 @@ SRCS	= error_manage.c \
 			libft/ft_atoi.c \
 			libft/ft_isdigit.c \
 			libft/ft_lstadd_back.c \
-			libft/ft_lastadd_front.c \
+			libft/ft_lstadd_front.c \
 			libft/ft_lstlast.c \
 			libft/ft_lstnew.c \
 			libft/ft_lstsize.c \

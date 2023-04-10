@@ -34,6 +34,7 @@ void	*sort_int_array(int *array, int size)
 		}
 		i++;
 	}
+	return ;
 }
 
 void print_list(t_list *a)

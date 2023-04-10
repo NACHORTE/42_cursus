@@ -37,7 +37,7 @@ void	swap(t_list **stack, char l);
 int		check_error(int argc, char **argv);
 int		ft_strcmp(const char *s1, const char *s2);
 void		*sort_int_array(int *array, int size);
-t_list	*sort(t_list *a, t_list *b, int size_a, int size_b);
+t_list	*sort(t_list *a, t_list *b, int size_a);
 void print_list(t_list *a);
 int	check_sorted(t_list *a, int *a_sorted, int size_a);
 
