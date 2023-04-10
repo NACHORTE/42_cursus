@@ -203,13 +203,13 @@ t_list	*sort(t_list *a, t_list *b, int size_a, int size_b)
 	}
 	reverse_array(chunks.chunks, chunks.len);
 	i = 0;
-	printf ("\n");
+	/*printf ("\n");
 	while (i < chunks.len)
 	{
 		printf("%d ", chunks.chunks[i]);
 		i++;
 	}
-	printf ("\n");
+	printf ("\n");*/
 	if (ft_lstsize(a) == 2)
 	{
 		if (a->content > a->next->content)
