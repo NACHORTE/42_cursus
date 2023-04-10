@@ -17,14 +17,8 @@ SRCS	= error_manage.c \
 			push_utils.c \
 			push_utils2.c \
 			sort.c \
-			ft_atoi.c \
-			ft_isdigit.c \
-			ft_lstadd_back.c \
-			ft_lstadd_front.c \
-			ft_lstlast.c \
-			ft_lstnew.c \
-			ft_lstsize.c \
-			ft_strlen.c
+			additional_ft.c \
+			lst_utils.c 
 
 OBJS		= $(SRCS:%.c=%.o)
 
