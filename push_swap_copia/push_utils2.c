@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	*sort_int_array(int *array, int size)
+void	sort_int_array(int *array, int size)
 {
 	int	i;
 	int	j;
@@ -74,3 +74,4 @@ int	check_sorted(t_list *a, int *a_sorted, int size_a)
 		return (1);
 	return (0);
 }
+
