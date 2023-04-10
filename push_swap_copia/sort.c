@@ -169,7 +169,7 @@ t_list	*sort(t_list *a, t_list *b, int size_a, int size_b)
 		size_a = ft_lstsize(a);
 		a_sorted = sort_a(a, size_a);
 		if (!a_sorted)
-			return ;
+			return (NULL);
 		if (check_sorted(a, a_sorted, size_a))
 			break;
 		midpoint = a_sorted[size_a / 2];

@@ -13,8 +13,16 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft/libft.h"
 # include "limits.h"
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+
+typedef struct s_list
+{
+	int				content;
+	struct s_list	*next;
+}					t_list;
 
 typedef struct s_chunk
 {
@@ -32,5 +40,14 @@ void		*sort_int_array(int *array, int size);
 t_list	*sort(t_list *a, t_list *b, int size_a, int size_b);
 void print_list(t_list *a);
 int	check_sorted(t_list *a, int *a_sorted, int size_a);
+
+int				ft_atoi(const char *str);
+size_t			ft_strlen(const char *str);
+int				ft_isdigit(int c);
+void			ft_lstadd_back(t_list **lst, t_list *new);
+void			ft_lstadd_front(t_list **lst, t_list *new);
+t_list			*ft_lstlast(t_list *lst);
+t_list			*ft_lstnew(int content);
+int				ft_lstsize(t_list *lst);
 
 #endif
