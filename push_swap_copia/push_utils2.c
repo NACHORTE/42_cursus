@@ -48,20 +48,28 @@ void print_list(t_list *a)
 	printf ("\n");
 }
 
-int	check_sorted(t_list *a)
+int	check_sorted(t_list *a, int *a_sorted, int size_a)
 {
 	t_list *tmp;
-	int	aux;
+	int	i;
+	int	equal;
 
+	equal = 0;
+	i = 0;
 	tmp = a;
-	while (tmp)
+
+	while (i < size_a)
 	{
-		aux = tmp->content;
-		tmp = tmp->next;
-		if (!tmp)
-			break;
-		if (aux > tmp->content)
+		if (equal == 1 && tmp->content != a_sorted[i])
 			return (0);
+		if (tmp->content == a_sorted[i])
+		{
+			equal = 1;
+			tmp = tmp->next;
+		}
+		i++;
 	}
-	return (1);
+	if (!tmp)
+		return (1);
+	return (0);
 }

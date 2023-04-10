@@ -164,12 +164,14 @@ t_list	*sort(t_list *a, t_list *b, int size_a, int size_b)
 	full_sorted = sort_a(a, size_a);
 	while (ft_lstsize(a) > 2)
 	{
-		if (check_sorted(a))
-			break;
+		/*if (check_sorted(a))
+			break;*/
 		size_a = ft_lstsize(a);
 		a_sorted = sort_a(a, size_a);
 		if (!a_sorted)
-			exit;
+			return ;
+		if (check_sorted(a, a_sorted, size_a))
+			break;
 		midpoint = a_sorted[size_a / 2];
 		i = 0;
 		while (i < size_a / 2)
@@ -177,7 +179,7 @@ t_list	*sort(t_list *a, t_list *b, int size_a, int size_b)
 			if (ft_lstlast(a)->content < midpoint)
 			{
 				reverse(&a, 'a');
-				if (check_sorted(a))
+				if (check_sorted(a, a_sorted, size_a))
 					break;
 				push_btoa(&b, &a, 'b');
 				i++;
@@ -190,7 +192,7 @@ t_list	*sort(t_list *a, t_list *b, int size_a, int size_b)
 			else
 			{
 				rotate(&a, 'a');
-				if (check_sorted(a))
+				if (check_sorted(a, a_sorted, size_a))
 					break;
 			}
 		}
