@@ -20,7 +20,7 @@ static int	*sort_a(t_list *a, int size_a)
 
 	i = 0;
 	a_sorted = malloc(sizeof(int) * size_a);
-	if (!a)
+	if (!a_sorted)
 		return(0);
 	tmp = a;
 	while(tmp)
@@ -33,9 +33,32 @@ static int	*sort_a(t_list *a, int size_a)
 	return (a_sorted);
 }
 
+static int	*sort_b(t_list *b, int size_b)
+{
+	int *b_sorted;
+	t_list *tmp;
+	int	i;
+
+	i = 0;
+	b_sorted = malloc(sizeof(int) * size_b);
+	if (!b_sorted)
+		return(0);
+	tmp = b;
+	while(i < size_b)
+	{
+		b_sorted[i] = tmp->content;
+		tmp = tmp->next;
+		i++;
+	}
+	if (size_b > 1)
+		sort_int_array(b_sorted, size_b);
+	return (b_sorted);
+}
+
 void	push_chunk(t_list **a, t_list **b, int *a_sorted, int n_push)
 {
 	int	midpos;
+	int	i;
 	int j;
 	int	rotations;
 	int midpoint;
@@ -45,6 +68,7 @@ void	push_chunk(t_list **a, t_list **b, int *a_sorted, int n_push)
 			push_btoa(a, b, 'a');
 			return ;
 		}
+	i = n_push - 1;
 	while (n_push > 2)
 	{
 		midpos = n_push / 2;
@@ -53,7 +77,7 @@ void	push_chunk(t_list **a, t_list **b, int *a_sorted, int n_push)
 		rotations = 0;
 		while (n_push == 3)
 		{
-			if ((*b)->content > a_sorted[1])
+			if ((*b)->content > (*b)->next->content && (*b)->content > (*b)->next->next->content)
 			{
 				push_btoa(a, b, 'a');
 				j++;
@@ -63,16 +87,30 @@ void	push_chunk(t_list **a, t_list **b, int *a_sorted, int n_push)
 			{
 				rotate(b, 'b');
 				rotations++;
+				if ((*b)->content > (*b)->next->content)
+					{
+						push_btoa(a, b, 'a');
+						j++;
+						n_push--;
+					}
+				else
+					{
+						swap(b, 'b');
+						push_btoa(a, b, 'a');
+						j++;
+						n_push--;
+					}
 			}
 		}
 		int elements;
 		elements = (n_push / 2) - 1;
-		while(j < elements && n_push > 3)
+		while(j < elements && n_push > 3)  //ARREGLAR
 		{
-			if ((*b)->content > midpoint)
+			if ((*b)->content == a_sorted[i])
 			{
 				push_btoa(a, b, 'a');
 				j++;
+				i--;
 				n_push--;
 			}
 			else
@@ -102,16 +140,60 @@ void	push_chunk(t_list **a, t_list **b, int *a_sorted, int n_push)
 	return ;
 }
 
+void	push_chunk_2(t_list **a, t_list **b, int *chunk_numbers, int n_push)
+{
+	int	i;
+	int	rotations;
+	int	pushed;
+
+	i = n_push - 1;
+	rotations = 0;
+	while (n_push > 0)
+	{
+		pushed = 0;
+		while(!pushed)
+		{
+		if ((*b)->content == chunk_numbers[i])
+		{
+			push_btoa(a, b, 'a');
+			n_push--;
+			i--;
+			pushed = 1;
+		}
+		else
+		{
+			rotate(b, 'b');
+			rotations++;
+		}
+		}
+		while (rotations != 0)
+		{
+			reverse(b, 'b');
+			rotations--;
+		}
+	}
+}
+
 void	back_to_a(t_list **a, t_list **b, t_chunk chunks, int *a_sorted)
 {
 	int	i;
+	int	*chunk_numbers;
 
 	if (*b == NULL)
 		return ;
 	i = 0;
 	while (i < chunks.len)
 	{
-		push_chunk(a, b, a_sorted, chunks.chunks[i]);
+		chunk_numbers = sort_b(*b, chunks.chunks[i]);
+		/*printf("\n");
+		for(int j = 0; j<chunks.chunks[i];j++)
+		{
+			printf("%d\n", chunk_numbers[j]);
+		}
+		printf("\n");
+		print_list(*b);*/
+		push_chunk_2(a, b, chunk_numbers, chunks.chunks[i]);
+		//push_chunk(a, b, a_sorted, chunks.chunks[i]);
 		i++;
 	}
 }
