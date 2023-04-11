@@ -140,6 +140,28 @@ void	push_chunk(t_list **a, t_list **b, int *a_sorted, int n_push)
 	return ;
 }
 
+int	keep_pushing(t_list *b, int number_to_push)
+{
+	int	i;
+	t_list	*tmp;
+
+	i = 0;
+	tmp = b;
+	while (tmp)
+	{
+		if (tmp->content == number_to_push)
+		{
+			if (i <= ft_lstsize(b))
+				return (1);
+			else
+				return (0);
+		}
+		i++;
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 void	push_chunk_2(t_list **a, t_list **b, int *chunk_numbers, int n_push)
 {
 	int	i;
@@ -169,6 +191,12 @@ void	push_chunk_2(t_list **a, t_list **b, int *chunk_numbers, int n_push)
 		while (rotations != 0)
 		{
 			reverse(b, 'b');
+			if ((*b)->content == chunk_numbers[i])
+			{
+				push_btoa(a, b, 'a');
+				n_push--;
+				i--;
+			}
 			rotations--;
 		}
 	}
