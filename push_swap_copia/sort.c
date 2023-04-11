@@ -140,7 +140,7 @@ void	push_chunk(t_list **a, t_list **b, int *a_sorted, int n_push)
 	return ;
 }
 
-int	keep_pushing(t_list *b, int number_to_push)
+int	is_on_half_up(t_list *b, int number_to_push)
 {
 	int	i;
 	t_list	*tmp;
@@ -151,7 +151,7 @@ int	keep_pushing(t_list *b, int number_to_push)
 	{
 		if (tmp->content == number_to_push)
 		{
-			if (i <= ft_lstsize(b))
+			if (i < ft_lstsize(b) / 2)
 				return (1);
 			else
 				return (0);
@@ -166,21 +166,18 @@ void	push_chunk_2(t_list **a, t_list **b, int *chunk_numbers, int n_push)
 {
 	int	i;
 	int	rotations;
-	int	pushed;
 
 	i = n_push - 1;
 	rotations = 0;
 	while (n_push > 0)
 	{
-		pushed = 0;
-		while(!pushed)
+		while(is_on_half_up(*b, chunk_numbers[i]) && n_push > 0)
 		{
 		if ((*b)->content == chunk_numbers[i])
 		{
 			push_btoa(a, b, 'a');
 			n_push--;
 			i--;
-			pushed = 1;
 		}
 		else
 		{
@@ -188,17 +185,32 @@ void	push_chunk_2(t_list **a, t_list **b, int *chunk_numbers, int n_push)
 			rotations++;
 		}
 		}
-		while (rotations != 0)
+		if (n_push <= 0 || ft_lstsize(*b) <= 3)
+			break;
+		while(!is_on_half_up(*b, chunk_numbers[i]))
+			reverse(b, 'b');
+		/*while (rotations != 0 && n_push > 0)
 		{
 			reverse(b, 'b');
+			rotations--;
 			if ((*b)->content == chunk_numbers[i])
 			{
 				push_btoa(a, b, 'a');
 				n_push--;
 				i--;
 			}
-			rotations--;
+		}*/
+	}
+	while (ft_lstsize(*b) > 0 && n_push > 0)
+	{
+		if ((*b)->content == chunk_numbers[i])
+		{
+			push_btoa(a, b, 'a');
+			n_push--;
+			i--;
 		}
+		else
+			rotate(b, 'b');
 	}
 }
 
