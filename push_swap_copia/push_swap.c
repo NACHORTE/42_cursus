@@ -53,6 +53,6 @@ int	main(int argc, char **argv)
 	b = NULL;
 	a = get_array(size_a, argv);
 	a = sort(a, b, size_a);
-	print_list(a);
+	//print_list(a);
 	//print_list(b);
 }

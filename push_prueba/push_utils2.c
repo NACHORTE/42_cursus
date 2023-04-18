@@ -37,28 +37,30 @@ void	sort_int_array(int *array, int size)
 	return ;
 }
 
-void print_list(t_list *a)
+void	print_list(t_list *a)
 {
-			t_list *temp1 = a;
+	t_list	*temp1;
+	int		x;
+
+	temp1 = a;
 	while (temp1)
 	{
-   		int x = temp1->content;
-    	printf("%d\n", x);
-    	temp1 = temp1->next;
+		x = temp1->content;
+		printf("%d\n", x);
+		temp1 = temp1->next;
 	}
 	printf ("\n");
 }
 
 int	check_sorted(t_list *a, int *a_sorted, int size_a)
 {
-	t_list *tmp;
-	int	i;
-	int	equal;
+	t_list	*tmp;
+	int		i;
+	int		equal;
 
 	equal = 0;
 	i = 0;
 	tmp = a;
-
 	while (i < size_a)
 	{
 		if (equal == 1 && tmp->content != a_sorted[i])
@@ -97,55 +99,28 @@ void	rr(t_list **a, t_list **b)
 	write(1, "rr\n", 3);
 }
 
-void	rrr(t_list **a, t_list **b)
+void	push_little(t_list **a, t_list **b, int *a_sorted)
 {
-	t_list	*last;
-	t_list	*prev_last;
+	int	i;
+	int	j;
+	int	number_topush;
 
-	if (!*a || !(*a)->next)
-		return ;
-	last = *a;
-	while (last->next)
+	i = 0;
+	while (ft_lstsize(*a) > 2)
 	{
-		prev_last = last;
-		last = last->next;
+		if (i < 2)
+			j = 2;
+		else
+			j = 3;
+		number_topush = a_sorted[j];
+		if ((*a)->content < number_topush)
+		{
+			push_btoa(b, a, 'b');
+			i++;
+		}
+		else if (number_on_half_up(*a, number_topush))
+			rotate(a, 'a');
+		else
+			reverse(a, 'a');
 	}
-	prev_last->next = NULL;
-	last->next = *a;
-	*a = last;
-	if (!*b || !(*b)->next)
-		return ;
-	last = *b;
-	while (last->next)
-	{
-		prev_last = last;
-		last = last->next;
-	}
-	prev_last->next = NULL;
-	last->next = *b;
-	*b = last;
-	write(1, "rrr\n", 4);
-}
-
-void	ss(t_list **a, t_list **b)
-{
-	t_list	*first;
-	t_list	*second;
-	int		temp;
-
-	if (*a == NULL || (*a)->next == NULL)
-		return;
-	first = *a;
-	second = first->next;
-	temp = first->content;
-	first->content = second->content;
-	second->content = temp;
-	if (*b == NULL || (*b)->next == NULL)
-		return;
-	first = *b;
-	second = first->next;
-	temp = first->content;
-	first->content = second->content;
-	second->content = temp;
-	write(1, "ss\n", 3);
 }

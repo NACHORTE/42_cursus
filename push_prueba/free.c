@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/07 15:21:37 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/13 16:02:57 by iortega-         ###   ########.fr       */
+/*   Created: 2023/04/18 21:36:03 by iortega-          #+#    #+#             */
+/*   Updated: 2023/04/18 21:36:03 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-void	*ft_memchr(const void *s, int c, size_t n)
+int	free_list(t_list **a)
 {
-	size_t	i;
+	t_list	*temp;
 
-	i = 0;
-	while (i < n)
+	while (*a != 0)
 	{
-		if (((unsigned char *)s)[i] == (unsigned char)c)
-			return ((void *)s + i);
-		i++;
+		temp = (*a)->next;
+		free(*a);
+		*a = temp;
 	}
 	return (0);
 }

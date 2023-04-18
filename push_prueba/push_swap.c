@@ -15,8 +15,8 @@
 t_list	*get_array(int numbers, char **input)
 {
 	t_list	*a;
-	int	i;
-	int	number;
+	int		i;
+	int		number;
 	t_list	*aux;
 
 	i = 1;
@@ -26,18 +26,10 @@ t_list	*get_array(int numbers, char **input)
 		number = ft_atoi(input[i]);
 		aux = ft_lstnew(number);
 		if (!aux)
-			return(0);
+			return (0);
 		ft_lstadd_back(&a, aux);
 		i++;
 	}
-	/*printf("%d\n", ft_lstsize(a));
-	t_list *temp = a;
-	while (temp)
-	{
-   		int x = temp->content;
-    	printf("%d\n", x);
-    	temp = temp->next;
-	}*/
 	return (a);
 }
 
@@ -45,14 +37,27 @@ int	main(int argc, char **argv)
 {
 	t_list	*a;
 	t_list	*b;
-	int	size_a;
+	int		size_a;
+	int		*a_sorted;
 
 	if (check_error(argc, argv) || argc == 2)
 		return (0);
 	size_a = argc - 1;
 	b = NULL;
 	a = get_array(size_a, argv);
-	a = sort(a, b, size_a);
+	if (!a)
+		return (free_list(&a));
+	a_sorted = sort_a(a, size_a);
+	if (!a)
+		return (free_list(&a));
+	if (check_sorted(a, a_sorted, size_a))
+		return (0);
+	if (size_a == 3)
+		a = sort_3(a);
+	else if (size_a <= 5)
+		a = sort_little(a, b, size_a, a_sorted);
+	else
+		a = sort(a, b, size_a, a_sorted);
+	free (a_sorted);
 	//print_list(a);
-	//print_list(b);
 }

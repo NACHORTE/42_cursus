@@ -46,22 +46,13 @@ int	main(int argc, char **argv)
 	t_list	*a;
 	t_list	*b;
 	int	size_a;
-	int	size_b;
 
 	if (check_error(argc, argv) || argc == 2)
 		return (0);
 	size_a = argc - 1;
-	size_b = 0;
 	b = NULL;
 	a = get_array(size_a, argv);
-	sort(a, b, size_a, size_b);
-	printf ("/\n");
-			t_list *temp1 = a;
-	while (temp1)
-	{
-   		int x = temp1->content;
-    	printf("%d\n", x);
-    	temp1 = temp1->next;
-	}
-	printf ("/\n");
+	a = sort(a, b, size_a);
+	print_list(a);
+	//print_list(b);
 }

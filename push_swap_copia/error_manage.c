@@ -47,7 +47,7 @@ static long long	ft_atoi_long(const char *str)
 
 static int	error_msg(void)
 {
-	write(1, &"Error\n", 6);
+	write(2, &"Error\n", 6);
 	return (1);
 }
 

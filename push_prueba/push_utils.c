@@ -19,7 +19,7 @@ void	swap(t_list **stack, char l)
 	int		temp;
 
 	if (*stack == NULL || (*stack)->next == NULL)
-		return;
+		return ;
 	first = *stack;
 	second = first->next;
 	temp = first->content;

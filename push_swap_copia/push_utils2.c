@@ -75,3 +75,77 @@ int	check_sorted(t_list *a, int *a_sorted, int size_a)
 	return (0);
 }
 
+void	rr(t_list **a, t_list **b)
+{
+	t_list	*first;
+	t_list	*last;
+
+	if (!a || !*a || !(*a)->next)
+		return ;
+	first = *a;
+	*a = (*a)->next;
+	last = ft_lstlast(*a);
+	last->next = first;
+	first->next = NULL;
+	if (!b || !*b || !(*b)->next)
+		return ;
+	first = *b;
+	*b = (*b)->next;
+	last = ft_lstlast(*b);
+	last->next = first;
+	first->next = NULL;
+	write(1, "rr\n", 3);
+}
+
+void	rrr(t_list **a, t_list **b)
+{
+	t_list	*last;
+	t_list	*prev_last;
+
+	if (!*a || !(*a)->next)
+		return ;
+	last = *a;
+	while (last->next)
+	{
+		prev_last = last;
+		last = last->next;
+	}
+	prev_last->next = NULL;
+	last->next = *a;
+	*a = last;
+	if (!*b || !(*b)->next)
+		return ;
+	last = *b;
+	while (last->next)
+	{
+		prev_last = last;
+		last = last->next;
+	}
+	prev_last->next = NULL;
+	last->next = *b;
+	*b = last;
+	write(1, "rrr\n", 4);
+}
+
+void	ss(t_list **a, t_list **b)
+{
+	t_list	*first;
+	t_list	*second;
+	int		temp;
+
+	if (*a == NULL || (*a)->next == NULL)
+		return;
+	first = *a;
+	second = first->next;
+	temp = first->content;
+	first->content = second->content;
+	second->content = temp;
+	if (*b == NULL || (*b)->next == NULL)
+		return;
+	first = *b;
+	second = first->next;
+	temp = first->content;
+	first->content = second->content;
+	second->content = temp;
+	write(1, "ss\n", 3);
+}

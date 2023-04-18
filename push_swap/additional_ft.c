@@ -1,14 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   additional_ft.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 14:05:21 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/13 13:02:33 by iortega-         ###   ########.fr       */
+/*   Created: 2023/04/10 19:41:18 by iortega-          #+#    #+#             */
+/*   Updated: 2023/04/10 19:41:18 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
 
 static int	ft_isspace(char c)
 {
@@ -41,4 +43,24 @@ int	ft_atoi(const char *str)
 	}
 	num = num * neg;
 	return (num);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	int	aux;
+
+	aux = 0;
+	while (*str != '\0')
+	{
+		aux++;
+		str++;
+	}
+	return (aux);
 }

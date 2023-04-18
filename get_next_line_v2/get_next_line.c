@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 12:14:39 by iortega-          #+#    #+#             */
-/*   Updated: 2023/03/28 23:17:49 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/04/16 13:28:42 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ char	*get_next_line(int fd)
 /*
 #include <fcntl.h>
 #include <stdio.h>
-
 
 int main(void)
 {

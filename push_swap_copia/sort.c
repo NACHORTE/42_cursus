@@ -55,6 +55,18 @@ static int	*sort_b(t_list *b, int size_b)
 	return (b_sorted);
 }
 
+void reverse_array(int arr[], int size)
+{
+    int i = 0, j = size - 1;
+    while (i < j) {
+        int tmp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = tmp;
+        i++;
+        j--;
+    }
+}
+
 void	push_chunk(t_list **a, t_list **b, int *a_sorted, int n_push)
 {
 	int	midpos;
@@ -214,7 +226,37 @@ void	push_chunk_2(t_list **a, t_list **b, int *chunk_numbers, int n_push)
 	}
 }
 
-void	back_to_a(t_list **a, t_list **b, t_chunk chunks, int *a_sorted)
+int	*chunk_to_push(int *all_nums, t_chunk chunks, int i, int a_size)
+{
+	int	*actual_chunk;
+	int	j;
+	int	number_of_chunks_before;
+	int	z;
+
+	actual_chunk = malloc(sizeof(int) * chunks.chunks[i]);
+	if (!actual_chunk)
+		return (0);
+	j = 0;
+	z = a_size;
+	number_of_chunks_before = chunks.len - (chunks.len - i);
+	while (number_of_chunks_before > 0)
+	{
+		z = z + chunks.chunks[j];
+		j++;
+		number_of_chunks_before--;
+	}
+	j = 0;
+	while (j < chunks.chunks[i])
+	{
+		actual_chunk[j] = all_nums[z];
+		j++;
+		z++;
+	}
+	reverse_array(actual_chunk, chunks.chunks[i]);
+	return (actual_chunk);
+}
+
+void	back_to_a(t_list **a, t_list **b, t_chunk chunks, int *a_sorted, int a_size)
 {
 	int	i;
 	int	*chunk_numbers;
@@ -224,7 +266,8 @@ void	back_to_a(t_list **a, t_list **b, t_chunk chunks, int *a_sorted)
 	i = 0;
 	while (i < chunks.len)
 	{
-		chunk_numbers = sort_b(*b, chunks.chunks[i]);
+		chunk_numbers = chunk_to_push(a_sorted, chunks, i, a_size);
+		//chunk_numbers = sort_b(*b, chunks.chunks[i]);
 		/*printf("\n");
 		for(int j = 0; j<chunks.chunks[i];j++)
 		{
@@ -233,23 +276,11 @@ void	back_to_a(t_list **a, t_list **b, t_chunk chunks, int *a_sorted)
 		printf("\n");
 		print_list(*b);*/
 		push_chunk_2(a, b, chunk_numbers, chunks.chunks[i]);
+		free(chunk_numbers);
 		//push_chunk(a, b, a_sorted, chunks.chunks[i]);
 		i++;
 	}
 }
-
-void reverse_array(int arr[], int size)
-{
-    int i = 0, j = size - 1;
-    while (i < j) {
-        int tmp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = tmp;
-        i++;
-        j--;
-    }
-}
-
 
 void	new_chunk(t_chunk *chunk, int new)
 {
@@ -273,6 +304,28 @@ void	new_chunk(t_chunk *chunk, int new)
 		free(tmp);
 }
 
+int		number_on_half_up(t_list *a, int midpoint)
+{
+	int	i;
+	t_list *tmp;
+
+	tmp = a;
+	i = 0;
+	while (tmp)
+	{
+		if (tmp->content < midpoint)
+		{
+			if (i < ft_lstsize(a) / 2)
+				return (1);
+			else
+				return (0);
+		}
+		i++;
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 t_list	*sort(t_list *a, t_list *b, int size_a)
 {
 	int	*a_sorted;
@@ -284,6 +337,7 @@ t_list	*sort(t_list *a, t_list *b, int size_a)
 	chunks.len = 0;
 	chunks.chunks = 0;
 	full_sorted = sort_a(a, size_a);
+	reverse_array(full_sorted, size_a);
 	while (ft_lstsize(a) > 2)
 	{
 		/*if (check_sorted(a))
@@ -298,7 +352,11 @@ t_list	*sort(t_list *a, t_list *b, int size_a)
 		i = 0;
 		while (i < size_a / 2)
 		{
-			if (ft_lstlast(a)->content < midpoint)
+			/*while (!number_on_half_up(a, midpoint))
+			{
+				reverse(&a, 'a');
+			}*/
+			/*if (ft_lstlast(a)->content < midpoint)
 			{
 				reverse(&a, 'a');
 				if (check_sorted(a, a_sorted, size_a))
@@ -306,14 +364,50 @@ t_list	*sort(t_list *a, t_list *b, int size_a)
 				push_btoa(&b, &a, 'b');
 				i++;
 			}
-			else if (a->content < midpoint)
+			else */if (a->content < midpoint)
 			{
 				push_btoa(&b, &a, 'b');
 				i++;
 			}
+			else if (a->next->content < midpoint)
+			{
+				if (ft_lstsize(b) > 1)
+				{
+					if (b->content < b->next->content)
+						ss(&a, &b);
+					else
+						rotate(&a, 'a');
+				}
+				else
+						rotate(&a, 'a');
+				if (check_sorted(a, a_sorted, size_a))
+					break;
+			}
+			else if (number_on_half_up(a, midpoint))
+			{
+				if (ft_lstsize(b) > 1)
+				{
+					if (b->content < b->next->content)
+						rr(&a, &b);
+					else
+						rotate(&a, 'a');
+				}
+				else
+					rotate(&a, 'a');
+				if (check_sorted(a, a_sorted, size_a))
+					break;
+			}
 			else
 			{
-				rotate(&a, 'a');
+				if (ft_lstsize(b) > 1)
+				{
+					if (b->content < ft_lstlast(b)->content)
+						rrr(&a, &b);
+					else
+						reverse(&a, 'a');
+				}
+				else
+					reverse(&a, 'a');
 				if (check_sorted(a, a_sorted, size_a))
 					break;
 			}
@@ -344,7 +438,7 @@ t_list	*sort(t_list *a, t_list *b, int size_a)
 
 	print_list(b);*/
 	
-	back_to_a(&a, &b, chunks, full_sorted);
+	back_to_a(&a, &b, chunks, full_sorted, ft_lstsize(a));
 
 	//print_list(a);
 	return (a);

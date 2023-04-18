@@ -18,8 +18,7 @@ SRCS	= error_manage.c \
 			push_utils2.c \
 			sort.c \
 			additional_ft.c \
-			lst_utils.c \
-			sort_utils.c
+			lst_utils.c 
 
 OBJS		= $(SRCS:%.c=%.o)
 
