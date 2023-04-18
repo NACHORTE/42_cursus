@@ -76,8 +76,6 @@ int	check_error(int argc, char **argv)
 	int	i;
 	int	j;
 
-	if (argc <= 1)
-		return (1);
 	i = 1;
 	while (i < argc)
 	{

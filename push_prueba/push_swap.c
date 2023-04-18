@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	int		size_a;
 	int		*a_sorted;
 
-	if (check_error(argc, argv) || argc == 2)
+	if (check_error(argc, argv) || argc <= 2)
 		return (0);
 	size_a = argc - 1;
 	b = NULL;
@@ -59,5 +59,4 @@ int	main(int argc, char **argv)
 	else
 		a = sort(a, b, size_a, a_sorted);
 	free (a_sorted);
-	//print_list(a);
 }

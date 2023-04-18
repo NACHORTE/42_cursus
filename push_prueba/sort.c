@@ -70,6 +70,12 @@ t_list	*sort_3(t_list *a)
 
 t_list	*sort_little(t_list *a, t_list *b, int size_a, int *a_sorted)
 {
+	if (size_a == 2)
+	{
+		if (a->content > a->next->content)
+		swap(&a, 'a');
+		return (a);
+	}
 	push_little(&a, &b, a_sorted);
 	if (a->content > a->next->content)
 		swap(&a, 'a');
