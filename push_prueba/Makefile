@@ -6,7 +6,7 @@
 #    By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/10 16:42:14 by iortega-          #+#    #+#              #
-#    Updated: 2023/04/10 16:42:14 by iortega-         ###   ########.fr        #
+#    Updated: 2023/04/19 14:56:09 by iortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,8 @@ SRCS	= error_manage.c \
 			additional_ft.c \
 			lst_utils.c \
 			sort_utils.c \
-			free.c
+			free.c \
+			ft_split.c
 
 OBJS		= $(SRCS:%.c=%.o)
 

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:02:40 by iortega-          #+#    #+#             */
-/*   Updated: 2023/04/19 14:44:57 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:02:40 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ static int	correct_arg( char **arg_split)
 		if (ft_atoi_long(arg_split[z]) > INT_MAX)
 			return (0);
 		if (ft_atoi_long(arg_split[z]) < INT_MIN)
+			return (0);
+		if (arg_split[z][0] == '-' && arg_split[z][1] == '\0')
 			return (0);
 		z++;
 	}
