@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 22:49:18 by iortega-          #+#    #+#             */
-/*   Updated: 2023/04/19 14:52:33 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/04/19 15:10:05 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,4 +66,5 @@ int	main(int argc, char **argv)
 	else
 		a = sort(a, b, size_a, a_sorted);
 	free (a_sorted);
+	return (0);
 }
