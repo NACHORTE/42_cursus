@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 21:04:46 by iortega-          #+#    #+#             */
-/*   Updated: 2023/04/18 21:04:46 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:49:58 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,11 @@ int	*sort_a(t_list *a, int size_a)
 		a_sorted[i] = tmp->content;
 		tmp = tmp->next;
 		i++;
+	}
+	if (is_dup(a_sorted, size_a))
+	{
+		free(a_sorted);
+		return (0);
 	}
 	sort_int_array(a_sorted, size_a);
 	return (a_sorted);

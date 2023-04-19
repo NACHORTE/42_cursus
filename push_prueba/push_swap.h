@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 12:32:36 by iortega-          #+#    #+#             */
-/*   Updated: 2023/04/09 15:22:53 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:48:29 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,12 @@ t_list		*sort_little(t_list *a, t_list *b, int size_a, int *a_sorted);
 t_list		*sort_3(t_list *a);
 void		print_list(t_list *a);
 int			check_sorted(t_list *a, int *a_sorted, int size_a);
+char		**ft_split(char const *s, char c);
 int			*sort_a(t_list *a, int size_a);
 int			*sort_a(t_list *a, int size_a);
+int			ft_free(char **str);
+int			error_msg(void);
+int			is_dup(int *a, int size_a);
 int			ft_atoi(const char *str);
 size_t		ft_strlen(const char *str);
 int			ft_isdigit(int c);

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 00:02:40 by iortega-          #+#    #+#             */
-/*   Updated: 2023/04/03 00:02:40 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:44:57 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,55 +45,55 @@ static long long	ft_atoi_long(const char *str)
 	return (num);
 }
 
-static int	error_msg(void)
+int	error_msg(void)
 {
 	write(2, &"Error\n", 6);
 	return (1);
 }
 
-static int	is_dup(int argc, char **argv)
+static int	correct_arg( char **arg_split)
 {
-	int	i;
+	int	z;
 	int	j;
 
-	i = 0;
-	while (i < argc)
+	z = 0;
+	while (arg_split[z])
 	{
-		j = i + 1;
-		while (j < argc)
+		j = 0;
+		if (arg_split[z][j] == '-')
+			j++;
+		while (arg_split[z][j] != '\0')
 		{
-			if (ft_strcmp(argv[i], argv[j]) == 0)
-				return (1);
-		j++;
+			if (!ft_isdigit((int) arg_split[z][j++]))
+				return (0);
 		}
-		i++;
+		if (ft_strlen(arg_split[z]) > 11 || ft_strlen(arg_split[z]) == 0)
+			return (0);
+		if (ft_atoi_long(arg_split[z]) > INT_MAX)
+			return (0);
+		if (ft_atoi_long(arg_split[z]) < INT_MIN)
+			return (0);
+		z++;
 	}
-	return (0);
+	return (1);
 }
 
 int	check_error(int argc, char **argv)
 {
-	int	i;
-	int	j;
+	int		i;
+	int		j;
+	int		z;
+	char	**arg_split;
 
 	i = 1;
 	while (i < argc)
 	{
-		j = 0;
-		if (argv[i][j] == '-')
-			j++;
-		while (argv[i][j] != '\0')
-		{
-			if (!ft_isdigit((int) argv[i][j++]))
-				return (error_msg());
-		}
-		if (ft_strlen(argv[i]) > 11 || ft_strlen(argv[i]) == 0)
+		arg_split = ft_split(argv[i], ' ');
+		z = 0;
+		if (!correct_arg(arg_split))
 			return (error_msg());
-		if (ft_atoi_long(argv[i]) > INT_MAX || ft_atoi_long(argv[i]) < INT_MIN)
-			return (error_msg());
+		ft_free(arg_split);
 		i++;
 	}
-	if (is_dup(argc, argv))
-		return (error_msg());
 	return (0);
 }

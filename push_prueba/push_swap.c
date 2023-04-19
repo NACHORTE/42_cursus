@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 22:49:18 by iortega-          #+#    #+#             */
-/*   Updated: 2023/04/02 22:49:18 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:52:33 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,25 @@ t_list	*get_array(int numbers, char **input)
 {
 	t_list	*a;
 	int		i;
-	int		number;
 	t_list	*aux;
+	char	**arg_split;
+	int		j;
 
 	i = 1;
 	a = NULL;
 	while (i <= numbers)
 	{
-		number = ft_atoi(input[i]);
-		aux = ft_lstnew(number);
-		if (!aux)
-			return (0);
-		ft_lstadd_back(&a, aux);
+		j = 0;
+		arg_split = ft_split(input[i], ' ');
+		while (arg_split[j])
+		{
+			aux = ft_lstnew(ft_atoi(arg_split[j]));
+			if (!aux)
+				return (0);
+			ft_lstadd_back(&a, aux);
+			j++;
+		}
+		ft_free(arg_split);
 		i++;
 	}
 	return (a);
@@ -37,18 +44,18 @@ int	main(int argc, char **argv)
 {
 	t_list	*a;
 	t_list	*b;
-	int		size_a;
 	int		*a_sorted;
+	int		size_a;
 
-	if (check_error(argc, argv) || argc <= 2)
+	if (check_error(argc, argv) || argc == 1)
 		return (0);
-	size_a = argc - 1;
 	b = NULL;
-	a = get_array(size_a, argv);
+	a = get_array(argc - 1, argv);
 	if (!a)
 		return (free_list(&a));
+	size_a = ft_lstsize(a);
 	a_sorted = sort_a(a, size_a);
-	if (!a)
+	if (!a_sorted)
 		return (free_list(&a));
 	if (check_sorted(a, a_sorted, size_a))
 		return (0);

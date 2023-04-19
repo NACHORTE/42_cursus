@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 19:12:35 by iortega-          #+#    #+#             */
-/*   Updated: 2023/04/09 15:28:26 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:52:27 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_list	*sort_little(t_list *a, t_list *b, int size_a, int *a_sorted)
 	if (size_a == 2)
 	{
 		if (a->content > a->next->content)
-		swap(&a, 'a');
+			swap(&a, 'a');
 		return (a);
 	}
 	push_little(&a, &b, a_sorted);

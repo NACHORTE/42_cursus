@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/10 19:41:18 by iortega-          #+#    #+#             */
-/*   Updated: 2023/04/10 19:41:18 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:34:02 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,20 @@ size_t	ft_strlen(const char *str)
 		str++;
 	}
 	return (aux);
+}
+
+int	ft_free(char **str)
+{
+	int	i;
+
+	i = 0;
+	if (!str)
+		return (0);
+	while (str[i] != 0)
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	return (-2);
 }
