@@ -1,0 +1,6 @@
+gcc main.c -I . -L minilibx -lmlx_Linux -lXext -lX11
+
+gcc main.c -I . -L minilibx -lmlx_Linux -lXext -lX11 get_next_line_v2/get_next_line.c get_next_line_v2/get_next_line_utils.c
+
+gcc main.c map_check.c image_manage.c movement.c map_manage.c mem_manage.c -Wall -Wextra -Werror -I . -L minilibx -lmlx_Linux -lXext -lX11 get_next_line_v2/get_next_line.c get_next_line_v2/get_next_line_utils.c
+
