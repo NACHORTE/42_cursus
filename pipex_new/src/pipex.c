@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:54:40 by iortega-          #+#    #+#             */
-/*   Updated: 2023/06/18 16:54:51 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/07/16 19:23:56 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	error_msg(void)
 	return (1);
 }
 
-char	**get_path(char **envp)
+/*char	**get_path(char **envp)
 {
 	char	**path;
 	while (ft_strncmp("PATH", *envp, 4))
@@ -50,8 +50,8 @@ void	call_child1(t_pipex pipex, char **envp)
 	dup2(pipex.port[1], 1);
 	close(pipex.port[0]);
 	dup2(pipex.infile, 0);
-	/*pipex.cmd1 = ft_split(argv[2], ' ');
-	pipex.cmd_path = get_cmd_path(pipex.path, pipex.cmd1[0]);*/
+	//pipex.cmd1 = ft_split(argv[2], ' ');
+	//pipex.cmd_path = get_cmd_path(pipex.path, pipex.cmd1[0]);
 	if (!pipex.cmd_path1)
 	{
 		//child_free(&pipex);
@@ -67,8 +67,8 @@ void	call_child2(t_pipex pipex, char **envp)
 	dup2(pipex.port[0], 0);
 	close(pipex.port[1]);
 	dup2(pipex.outfile, 1);
-	/*pipex.cmd2 = ft_split(argv[3], ' ');
-	pipex.cmd_path = get_cmd_path(pipex.path, pipex.cmd2[0]);*/
+	//pipex.cmd2 = ft_split(argv[3], ' ');
+	//pipex.cmd_path = get_cmd_path(pipex.path, pipex.cmd2[0]);
 	if (!pipex.cmd_path2)
 	{
 		//child_free(&pipex);
@@ -132,7 +132,7 @@ void	childs_free(t_pipex *pipex)
 	free_doublearray(pipex->cmd2);
 	free(pipex->cmd_path1);
 	free(pipex->cmd_path2);
-}
+}*/
 
 int	pipe_init(t_pipex *pipex, char **argv)
 {
