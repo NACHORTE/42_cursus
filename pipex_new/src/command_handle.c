@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 19:00:38 by iortega-          #+#    #+#             */
-/*   Updated: 2023/07/16 19:24:50 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:09:12 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 char	**get_path(char **envp)
 {
 	char	**path;
+
 	while (ft_strncmp("PATH", *envp, 4))
 		envp++;
 	path = ft_split(*envp + 5, ':');

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:58:24 by iortega-          #+#    #+#             */
-/*   Updated: 2023/05/04 20:27:29 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:12:24 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdio.h>
-# include <X11/keysym.h>
-# include <X11/X.h>
+//# include <X11/keysym.h>
+//# include <X11/X.h>
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
@@ -28,6 +28,7 @@
 # define A 97
 # define S 115
 # define IMG_SIZE 100
+# define ESC 65307
 
 typedef struct s_img {
 	void	*img;

@@ -6,13 +6,13 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 19:07:19 by iortega-          #+#    #+#             */
-/*   Updated: 2023/07/16 19:22:32 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/07/22 16:08:51 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void close_pipes(t_pipex *pipex)
+void	close_pipes(t_pipex *pipex)
 {
 	close(pipex->port[0]);
 	close(pipex->port[1]);
