@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 19:00:38 by iortega-          #+#    #+#             */
-/*   Updated: 2023/07/22 16:09:12 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:27:26 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ int	divide_command(t_pipex *pipex, char **argv)
 {
 	pipex->cmd1 = ft_split(argv[2], ' ');
 	pipex->cmd_path1 = get_cmd_path(pipex->path, pipex->cmd1[0]);
-	if (!pipex->cmd_path1)
+	/*if (!pipex->cmd_path1)
 	{
 		free_doublearray(pipex->cmd1);
 		return (0);
-	}
+	}*/
 	pipex->cmd2 = ft_split(argv[3], ' ');
 	pipex->cmd_path2 = get_cmd_path(pipex->path, pipex->cmd2[0]);
 	if (!pipex->cmd_path2)

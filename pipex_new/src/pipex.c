@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:54:40 by iortega-          #+#    #+#             */
-/*   Updated: 2023/07/26 18:06:05 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:30:14 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,11 @@ void	childs_free(t_pipex *pipex)
 	free(pipex->cmd_path2);
 }*/
 
+void	leakcheck(void)
+{
+	system("leaks --list pipex");
+}
+
 int	pipe_init(t_pipex *pipex, char **argv)
 {
 	pipex->infile = open(argv[1], O_RDONLY);
@@ -150,6 +155,7 @@ int	pipe_init(t_pipex *pipex, char **argv)
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
+	atexit(leakcheck);
 
 	if (argc != 5)
 		return (error_msg());
