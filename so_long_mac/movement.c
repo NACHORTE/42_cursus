@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:40:28 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/01 13:09:01 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:15:16 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	move_right(t_data *var, int i, int j)
 		return (0);*/
 		free_mem(var);
 		destroy_images(var);
-		return (0);
+		exit (0);
 	}
 	return (1);
 }
@@ -55,7 +55,7 @@ static int	move_up(t_data *var, int i, int j)
 		return (0);*/
 		free_mem(var);
 		destroy_images(var);
-		return (0);
+		exit (0);
 	}
 	return (1);
 }
@@ -79,7 +79,7 @@ static int	move_left(t_data *var, int i, int j)
 		return (0);*/
 		free_mem(var);
 		destroy_images(var);
-		return (0);
+		exit (0);
 	}
 	return (1);
 }
@@ -103,7 +103,7 @@ static int	move_down(t_data *var, int i, int j)
 		return (0);*/
 		free_mem(var);
 		destroy_images(var);
-		return (0);
+		exit (0);
 	}
 	return (1);
 }
@@ -119,7 +119,7 @@ int	select_move(int key, t_data *var)
 		var->win = NULL;*/
 		free_mem(var);
 		destroy_images(var);
-		return (0);
+		exit (0);
 	}
 	i = var->mapa.char_y;
 	j = var->mapa.char_x;

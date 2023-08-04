@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:58:29 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/01 13:20:59 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:19:06 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,15 @@ static void	variable_init(t_data *var)
 	return (0);
 }*/
 
+/*void	leakcheck(void)
+{
+	system("leaks --list so_long");
+}*/
+
 int	main(int argc, char **argv)
 {
 	t_data	var;
+	//atexit(leakcheck);
 
 	if (argc != 2)
 	{

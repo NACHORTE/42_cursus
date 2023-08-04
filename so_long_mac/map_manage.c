@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:06:45 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/01 13:28:09 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/04 13:15:42 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	x_press(t_data *data)
 	data->win = NULL;*/
 	free_mem(data);
 	destroy_images(data);
-	return(0);
+	exit (0);
 }
 
 static int	get_lines(t_data *var)
