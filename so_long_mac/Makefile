@@ -6,7 +6,7 @@
 #    By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 20:17:24 by iortega-          #+#    #+#              #
-#    Updated: 2023/08/01 13:19:14 by iortega-         ###   ########.fr        #
+#    Updated: 2023/08/09 12:32:27 by iortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME	= so_long
 CC		= gcc
 
 STANDARD_FLAGS	= -Wall -Wextra -Werror
-MINILIBX_FLAGS	= -I . -L minilibx -lmlx_Linux #-lXext -lX11
+MINILIBX_FLAGS	= -Lmlx -lmlx -Imlx -framework OpenGL -framework AppKit
 
 SRCS			= image_manage.c \
 				main.c \
@@ -36,16 +36,10 @@ GNL_OBJS		= get_next_line.o \
 all:			$(NAME)
 
 $(NAME): $(OBJS)
-				$(CC) $(OBJS) $(GNL_OBJS) -Lmlx -lmlx -Imlx -framework OpenGL -framework AppKit -o $(NAME)
+				$(CC) $(OBJS) $(GNL_OBJS) $(MINILIBX_FLAGS) -o $(NAME)
 
 $(OBJS): $(SRCS)
-				$(CC) -Wall -Wextra -Werror -Imlx -c $(SRCS) $(GNL_SRCS)
-
-#$(NAME): $(OBJS)
-#				$(CC) $(OBJS) $(GNL_OBJS) $(STANDARD_FLAGS) $(MINILIBX_FLAGS) -o $(NAME)
-
-#$(OBJS): $(SRCS)
-#				$(CC) $(STANDARD_FLAGS) -c $(SRCS) $(GNL_SRCS)
+				$(CC) $(STANDARD_FLAGS) -Imlx -c $(SRCS) $(GNL_SRCS)
 
 clean:
 				rm -rf $(OBJS) $(GNL_OBJS)
@@ -53,3 +47,6 @@ clean:
 fclean:
 				make clean
 				rm -rf $(NAME)
+re: fclean all
+
+.PHONY: all clean fclean re

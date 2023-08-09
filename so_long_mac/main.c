@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:58:29 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/04 13:19:06 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/09 12:18:39 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,15 +33,15 @@ static void	variable_init(t_data *var)
 	return (0);
 }*/
 
-/*void	leakcheck(void)
+void	leakcheck(void)
 {
 	system("leaks --list so_long");
-}*/
+}
 
 int	main(int argc, char **argv)
 {
 	t_data	var;
-	//atexit(leakcheck);
+	atexit(leakcheck);
 
 	if (argc != 2)
 	{
@@ -58,6 +58,7 @@ int	main(int argc, char **argv)
 	if (!valid_path(&var, argv[1]))
 	{
 		write(1, "Impossible to complete level.\n", 30);
+		free_mem(&var);
 		return (0);
 	}
 	variable_init(&var);
