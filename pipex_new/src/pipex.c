@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:54:40 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/04 13:30:14 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:51:55 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,49 +134,66 @@ void	childs_free(t_pipex *pipex)
 	free(pipex->cmd_path2);
 }*/
 
-void	leakcheck(void)
+/*void	leakcheck(void)
 {
 	system("leaks --list pipex");
-}
+}*/
 
-int	pipe_init(t_pipex *pipex, char **argv)
+int	pipe_init(t_pipex *pipex, char **argv, int *err)
 {
-	pipex->infile = open(argv[1], O_RDONLY);
-	if (pipex->infile < 0)
+	*err = 0;
+	if (pipe(pipex->port) < 0)
+	{
+		perror(NULL);
 		return (1);
+	}
 	pipex->outfile = open(argv[4], O_TRUNC | O_CREAT | O_RDWR, 0000644);
 	if (pipex->outfile < 0)
+	{
+		perror(NULL);
 		return (1);
-	if (pipe(pipex->port) < 0)
-		return (1);
+	}
+	pipex->infile = open(argv[1], O_RDONLY);
+	if (pipex->infile < 0)
+	{
+		perror(NULL);
+		*err = 1;
+		return (0);
+	}
 	return (0);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_pipex	pipex;
-	atexit(leakcheck);
+	int		status;
+	int		err;
+	//atexit(leakcheck);
 
 	if (argc != 5)
 		return (error_msg());
-	if (pipe_init(&pipex, argv))
-		return (write(2, &"Error pipe\n", 11));
+	if (pipe_init(&pipex, argv, &err))
+		return (errno);
 	pipex.path = get_path(envp);
 	if (!divide_command(&pipex, argv))
 	{
 		pipex_free(&pipex);
 		return (error_msg());
 	}
-	pipex.child1 = fork();
-	if (pipex.child1 == 0)
-		call_child1(pipex, envp);
+	if (err == 0)
+	{
+		pipex.child1 = fork();
+		if (pipex.child1 == 0)
+			call_child1(pipex, envp);	
+	}
 	pipex.child2 = fork();
 	if (pipex.child2 == 0)
 		call_child2(pipex, envp);
 	close_pipes(&pipex);
-	waitpid(pipex.child1, NULL, 0);
-	waitpid(pipex.child2, NULL, 0);
+	if (err == 0)
+		waitpid(pipex.child1, NULL, 0);
+	waitpid(pipex.child2, &status, 0);
 	childs_free(&pipex);
 	pipex_free(&pipex);
-	return (0);
+	return ((status & 0xFF00) >> 8);
 }

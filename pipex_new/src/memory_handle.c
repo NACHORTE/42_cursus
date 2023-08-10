@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 19:07:19 by iortega-          #+#    #+#             */
-/*   Updated: 2023/07/22 16:08:51 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:37:05 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ void	childs_free(t_pipex *pipex)
 	free_doublearray(pipex->cmd1);
 	free_doublearray(pipex->cmd2);
 	free(pipex->cmd_path1);
-	free(pipex->cmd_path2);
+	free(pipex->cmd_path2); //ERROR SI PATH == CMD
 }

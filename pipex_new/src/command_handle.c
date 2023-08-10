@@ -6,11 +6,29 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 19:00:38 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/04 13:27:26 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/10 13:50:31 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
+
+static char *ft_strdup(char *str)
+{
+	int		len;
+	char	*dup;
+	int		i;
+	
+	len = ft_strlen(str);
+	dup = malloc(sizeof(char) * len + 1);
+	i = 0;
+	while (str[i] != '\0')
+	{
+		dup[i] = str[i];
+		i++;
+	}
+	dup[i] = '\0';
+	return (dup);
+}
 
 char	**get_path(char **envp)
 {
@@ -37,6 +55,8 @@ char	*get_cmd_path(char **paths, char *cmd)
 		free(command);
 		paths++;
 	}
+	if (access(cmd, 0) == 0)
+			return (ft_strdup(cmd));
 	return (NULL);
 }
 
@@ -51,12 +71,12 @@ int	divide_command(t_pipex *pipex, char **argv)
 	}*/
 	pipex->cmd2 = ft_split(argv[3], ' ');
 	pipex->cmd_path2 = get_cmd_path(pipex->path, pipex->cmd2[0]);
-	if (!pipex->cmd_path2)
+	/*if (!pipex->cmd_path2)
 	{
 		free_doublearray(pipex->cmd1);
 		free(pipex->cmd_path1);
 		free_doublearray(pipex->cmd2);
 		return (0);
-	}
+	}*/
 	return (1);
 }

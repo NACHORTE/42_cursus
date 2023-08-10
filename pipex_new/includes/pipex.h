@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 15:56:23 by iortega-          #+#    #+#             */
-/*   Updated: 2023/07/16 19:24:31 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/10 12:32:39 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ char	**get_path(char **envp);
 char	*get_cmd_path(char **paths, char *cmd);
 int		divide_command(t_pipex *pipex, char **argv);
 int		error_msg(void);
-int		pipe_init(t_pipex *pipex, char **argv);
+int		pipe_init(t_pipex *pipex, char **argv, int *err);
 
 #endif
