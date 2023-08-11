@@ -6,7 +6,7 @@
 #    By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/18 15:06:00 by iortega-          #+#    #+#              #
-#    Updated: 2023/07/16 19:19:03 by iortega-         ###   ########.fr        #
+#    Updated: 2023/08/11 12:23:32 by iortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,3 +53,6 @@ clean:
 fclean:
 				make clean
 				rm -rf $(NAME)
+re: fclean all
+
+.PHONY: all clean fclean re
