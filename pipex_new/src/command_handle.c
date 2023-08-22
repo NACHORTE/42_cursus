@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 19:00:38 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/11 12:24:55 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:43:14 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**get_path(char **envp)
 {
 	char	**path;
 
-	while (ft_strncmp("PATH", *envp, 4))
+	while (ft_strncmp("PATH=", *envp, 5))
 		envp++;
 	path = ft_split(*envp + 5, ':');
 	return (path);
@@ -50,12 +50,12 @@ char	*get_cmd_path(char **paths, char *cmd)
 		tmp = ft_strjoin(*paths, "/");
 		command = ft_strjoin(tmp, cmd);
 		free(tmp);
-		if (access(command, 0) == 0)
+		if (access(command, X_OK) == 0)
 			return (command);
 		free(command);
 		paths++;
 	}
-	if (access(cmd, 0) == 0)
+	if (access(cmd, X_OK) == 0)
 		return (ft_strdup(cmd));
 	return (NULL);
 }

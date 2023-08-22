@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 19:05:29 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/11 12:25:45 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/17 13:47:38 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ void	call_child1(t_pipex pipex, char **envp)
 		exit(127);
 	}
 	execve(pipex.cmd_path1, pipex.cmd1, envp);
+	//fprintf(stderr,"esparrago\n");
+	exit(1);
 }
 
 void	call_child2(t_pipex pipex, char **envp)
@@ -50,10 +52,12 @@ void	call_child2(t_pipex pipex, char **envp)
 	dup2(pipex.port[0], 0);
 	close(pipex.port[1]);
 	dup2(pipex.outfile, 1);
+	//write(2, &"hijo2\n",6);
 	if (!pipex.cmd_path2)
 	{
 		no_command(pipex, 2);
 		exit(127);
 	}
 	execve(pipex.cmd_path2, pipex.cmd2, envp);
+	exit(1);
 }
