@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:54:40 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/17 13:47:15 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/24 14:30:20 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ int	pipe_init(t_pipex *pipex, char **argv, int *err)
 	pipex->outfile = open(argv[4], O_TRUNC | O_CREAT | O_RDWR, 0000644);
 	if (pipex->outfile < 0)
 	{
-		perror(NULL);
+		perror(argv[4]);
 		return (1);
 	}
 	pipex->infile = open(argv[1], O_RDONLY);
 	if (pipex->infile < 0)
 	{
-		perror(NULL);
+		perror(argv[1]);
 		*err = 1;
 		return (0);
 	}
@@ -52,7 +52,7 @@ int	child_init(t_pipex *pipex, char **envp, int err)
 		if (pipex->child1 == 0)
 			call_child1(*pipex, envp);
 	}
-	fprintf(stderr,"%d\n", pipex->child1);
+	//fprintf(stderr,"%d\n", pipex->child1);
 	pipex->child2 = fork();
 	if (pipex->child2 == 0)
 	{
@@ -78,6 +78,8 @@ int	main(int argc, char **argv, char **envp)
 	if (pipe_init(&pipex, argv, &err))
 		return (errno);
 	pipex.path = get_path(envp);
+	if (!pipex.path)
+		return (error_msg());
 	if (!divide_command(&pipex, argv))
 	{
 		pipex_free(&pipex);
