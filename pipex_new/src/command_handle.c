@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 19:00:38 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/24 15:08:23 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:35:20 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,19 @@ static char	*ft_strdup(char *str)
 	return (dup);
 }
 
+static char	*absolute_route(char *cmd, int *abs)
+{
+	if (cmd[0] == '/' || cmd[0] == '.')
+	{
+		if (access(cmd, X_OK) == 0)
+			return (ft_strdup(cmd));
+		else
+			return (NULL);
+	}
+	*abs = 1;
+	return (NULL);
+}
+
 char	**get_path(char **envp)
 {
 	char	**path;
@@ -37,11 +50,9 @@ char	**get_path(char **envp)
 	while (*envp)
 	{
 		if (!ft_strncmp("PATH=", *envp, 5))
-			break;
+			break ;
 		envp++;
 	}
-	/*while (ft_strncmp("PATH=", *envp, 5))
-		envp++;*/
 	if (!*envp)
 		return (NULL);
 	path = ft_split(*envp + 5, ':');
@@ -52,17 +63,12 @@ char	*get_cmd_path(char **paths, char *cmd)
 {
 	char	*tmp;
 	char	*command;
+	int		abs;
 
-	if (cmd[0] == '/' || cmd[0] == '.')
-	{
-		if (access(cmd, X_OK) == 0)
-		{
-			printf("valido\n");
-			return (ft_strdup(cmd));
-		}
-		else
-			return (NULL);
-	}
+	abs = 0;
+	command = absolute_route(cmd, &abs);
+	if (!abs)
+		return (command);
 	while (*paths)
 	{
 		tmp = ft_strjoin(*paths, "/");
