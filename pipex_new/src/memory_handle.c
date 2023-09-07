@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 19:07:19 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/11 12:24:17 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/09/06 19:54:17 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ void	pipex_free(t_pipex *pipex)
 {
 	close(pipex->infile);
 	close(pipex->outfile);
-	free_doublearray(pipex->path);
+	if (pipex->path)
+		free_doublearray(pipex->path);
 }
 
 void	childs_free(t_pipex *pipex)

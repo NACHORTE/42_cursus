@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 19:00:38 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/24 17:35:20 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/09/06 21:07:30 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*absolute_route(char *cmd, int *abs)
 {
 	if (cmd[0] == '/' || cmd[0] == '.')
 	{
-		if (access(cmd, X_OK) == 0)
+		if (access(cmd, F_OK) == 0)
 			return (ft_strdup(cmd));
 		else
 			return (NULL);
@@ -66,21 +66,23 @@ char	*get_cmd_path(char **paths, char *cmd)
 	int		abs;
 
 	abs = 0;
+	if (!cmd)
+		return(NULL);
 	command = absolute_route(cmd, &abs);
 	if (!abs)
 		return (command);
-	while (*paths)
+	while (paths && *paths)
 	{
 		tmp = ft_strjoin(*paths, "/");
 		command = ft_strjoin(tmp, cmd);
 		free(tmp);
-		if (access(command, X_OK) == 0)
+		if (access(command, F_OK) == 0)
 			return (command);
 		free(command);
 		paths++;
 	}
-	if (access(cmd, X_OK) == 0)
-		return (ft_strdup(cmd));
+	/*if (access(cmd, X_OK) == 0)
+		return (ft_strdup(cmd));*/
 	return (NULL);
 }
 

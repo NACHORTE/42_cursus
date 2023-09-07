@@ -6,7 +6,7 @@
 #    By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/06/18 15:06:00 by iortega-          #+#    #+#              #
-#    Updated: 2023/08/11 12:23:32 by iortega-         ###   ########.fr        #
+#    Updated: 2023/09/03 19:15:28 by iortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= pipex
 
 CC		= gcc
 
-STANDARD_FLAGS	= -Wall -Wextra -Werror
+STANDARD_FLAGS	= -Wall -Wextra -Werror #-fsanitize=leak
 
 SRCS			= ./src/pipex.c \
 				./src/memory_handle.c \

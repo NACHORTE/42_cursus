@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 14:54:40 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/24 17:34:53 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/09/06 20:13:55 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int	main(int argc, char **argv, char **envp)
 	if (pipe_init(&pipex, argv, &err))
 		return (errno);
 	pipex.path = get_path(envp);
-	if (!pipex.path)
-		return (error_msg());
+	/*if (!pipex.path)
+		return (error_msg());*/
 	if (!divide_command(&pipex, argv))
 	{
 		pipex_free(&pipex);
