@@ -6,13 +6,13 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/16 19:07:19 by iortega-          #+#    #+#             */
-/*   Updated: 2023/07/16 19:22:32 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/09/06 19:54:17 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/pipex.h"
 
-void close_pipes(t_pipex *pipex)
+void	close_pipes(t_pipex *pipex)
 {
 	close(pipex->port[0]);
 	close(pipex->port[1]);
@@ -35,7 +35,8 @@ void	pipex_free(t_pipex *pipex)
 {
 	close(pipex->infile);
 	close(pipex->outfile);
-	free_doublearray(pipex->path);
+	if (pipex->path)
+		free_doublearray(pipex->path);
 }
 
 void	childs_free(t_pipex *pipex)

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 15:58:29 by iortega-          #+#    #+#             */
-/*   Updated: 2023/05/01 22:03:01 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:12:42 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,15 @@ static void	variable_init(t_data *var)
 	var->mapa.end = 0;
 	move_msg(var);
 }
+
+/*int	quetecla(int key, t_data *var)
+{
+	t_data *hola;
+	hola = var;
+	hola = hola + 1;
+	printf("%d \n", key);
+	return (0);
+}*/
 
 int	main(int argc, char **argv)
 {
@@ -45,7 +54,7 @@ int	main(int argc, char **argv)
 	variable_init(&var);
 	mlx_loop_hook(var.mlx, &refresh, &var);
 	mlx_key_hook(var.win, select_move, &var);
-	mlx_hook(var.win, ClientMessage, LeaveWindowMask, &x_press, &var);
+	mlx_hook(var.win, 17, 0, &x_press, &var);
 	mlx_loop(var.mlx);
 	destroy_images(&var);
 	free_mem(&var);

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 15:40:28 by iortega-          #+#    #+#             */
-/*   Updated: 2023/05/01 21:06:00 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/07/26 11:12:58 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int	select_move(int key, t_data *var)
 	int	i;
 	int	j;
 
-	if (key == XK_Escape)
+	if (key == ESC)
 	{
 		mlx_destroy_window(var->mlx, var->win);
 		var->win = NULL;
